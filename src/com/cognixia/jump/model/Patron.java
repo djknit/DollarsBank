@@ -7,7 +7,20 @@ public class Patron {
 	private Long userId;
 	private String name;
 	private String address;
-	private String phoneNumber;
+	private long phoneNumber;
+	
+	public Patron() {
+		this(null, null, -1L, null, null, -1L);
+	}
+	public Patron(String username, String password, Long userId, String name, String address, long phoneNumber) {
+		super();
+		this.username = username;
+		this.password = password;
+		this.userId = userId;
+		this.name = name;
+		this.address = address;
+		this.phoneNumber = phoneNumber;
+	}
 	
 	public String getUsername() {
 		return username;
@@ -39,10 +52,10 @@ public class Patron {
 	public void setAddress(String address) {
 		this.address = address;
 	}
-	public String getPhoneNumber() {
+	public long getPhoneNumber() {
 		return phoneNumber;
 	}
-	public void setPhoneNumber(String phoneNumber) {
+	public void setPhoneNumber(long phoneNumber) {
 		this.phoneNumber = phoneNumber;
 	}
 	
