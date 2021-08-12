@@ -1,6 +1,7 @@
 package com.cognixia.jump.model;
 
 import java.sql.Timestamp;
+import java.time.ZonedDateTime;
 
 public class Transaction {
 	
@@ -25,6 +26,14 @@ public class Transaction {
 		this.transactionId = transactionId;
 		this.accountId = accountId;
 		this.amountInCents = amountInCents;
+/************************************************************
+ ************************************************************
+ * NOTE:													*
+ * 															*
+ * source for timestamp stuff:								*
+ * > > >  https://mkyong.com/java/how-to-get-current-timestamps-in-java/
+ * ***********************************************************
+ * > > > > > */
 		this.timestamp = timestamp;
 		this.reveivingAccountId = reveivingAccountId;
 		this.sendingAccountId = sendingAccountId;
@@ -54,6 +63,10 @@ public class Transaction {
 	}
 	public void setTimestamp(Timestamp timestamp) {
 		this.timestamp = timestamp;
+	}
+	public void setTimestampToNow() {
+		long currentEpochMilli = ZonedDateTime.now().toInstant().toEpochMilli();
+		setTimestamp(new Timestamp(currentEpochMilli));
 	}
 	public Long getReveivingAccountId() {
 		return reveivingAccountId;
