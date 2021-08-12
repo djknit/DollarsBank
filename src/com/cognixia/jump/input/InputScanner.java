@@ -1,6 +1,5 @@
 package com.cognixia.jump.input;
 
-import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class InputScanner {

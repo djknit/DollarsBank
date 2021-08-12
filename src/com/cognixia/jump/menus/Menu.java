@@ -35,14 +35,14 @@ class Menu {
 	
 	private static int getInput(int numOptions) {
 		int selectedNumber = -1;
-		int numTries = 0;
+//		int numTries = 0;
 		while (selectedNumber < 0 || selectedNumber >= numOptions) {
-			if (numTries++ > 0) {
+//			if (numTries++ < 1) {
 				System.out.println(
 					"Unable to process input. Please enter a number between 0 and "
 					+ (numOptions - 1) + ":"
 				);
-			}
+//			}
 			System.out.print(" > ");
 			try {
 				selectedNumber = InputScanner.getIntInput();
