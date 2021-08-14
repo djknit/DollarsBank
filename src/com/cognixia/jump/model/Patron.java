@@ -1,25 +1,28 @@
 package com.cognixia.jump.model;
 
-public class Patron {
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
+public class Patron extends RecordWithId implements Serializable {
+
+	private static final long serialVersionUID = 1L;
+	
 	private String username;
 	private String password;
-	private Long userId;
 	private String name;
 	private String address;
 	private long phoneNumber;
+	private List<Account> accounts;
 	
-	public Patron() {
-		this(null, null, -1L, null, null, -1L);
-	}
-	public Patron(String username, String password, Long userId, String name, String address, long phoneNumber) {
+	public Patron(String username, String password, String name, String address, long phoneNumber) {
 		super();
 		this.username = username;
 		this.password = password;
-		this.userId = userId;
 		this.name = name;
 		this.address = address;
 		this.phoneNumber = phoneNumber;
+		this.accounts = new ArrayList<Account>();
 	}
 	
 	public String getUsername() {
@@ -28,30 +31,28 @@ public class Patron {
 	public void setUsername(String username) {
 		this.username = username;
 	}
+	
 	public String getPassword() {
 		return password;
 	}
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public Long getUserId() {
-		return userId;
-	}
-	public void setUserId(Long userId) {
-		this.userId = userId;
-	}
+	
 	public String getName() {
 		return name;
 	}
 	public void setName(String name) {
 		this.name = name;
 	}
+	
 	public String getAddress() {
 		return address;
 	}
 	public void setAddress(String address) {
 		this.address = address;
 	}
+	
 	public long getPhoneNumber() {
 		return phoneNumber;
 	}
@@ -59,5 +60,17 @@ public class Patron {
 		this.phoneNumber = phoneNumber;
 	}
 	
+	public List<Account> getAccounts() {
+		return accounts;
+	}
+	public void setAccounts(List<Account> accounts) {
+		this.accounts = accounts;
+	}
+	public void addAccount(Account account) {
+		this.accounts.add(account);
+	}
+	public void removeAccount(Account account) {
+		this.accounts.remove(account);
+	}
 	
 }

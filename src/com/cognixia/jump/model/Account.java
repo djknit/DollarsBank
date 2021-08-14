@@ -1,64 +1,59 @@
 package com.cognixia.jump.model;
 
+import java.io.Serializable;
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
 
-public class Account {
+public class Account extends RecordWithId implements Serializable {
 
-	private Long accountId;
-	private Long userId;
+	private static final long serialVersionUID = 1L;
+
+	private Patron patron;
 	private Date dateOpened;
 	private String nickname;
-	private long balanceInCents;
+	private DollarAmount balance;
+	private List<Transaction> transactions;
 	
-	public Account(Long accountId, Long userId, Date dateOpened, String nickname, long balanceInCents) {
+	public Account(Patron patron, Date dateOpened, String nickname, long balanceInCents) {
 		super();
-		this.accountId = accountId;
-		this.userId = userId;
+		this.patron = patron;
 		this.dateOpened = dateOpened;
 		this.nickname = nickname;
-		this.balanceInCents = balanceInCents;
+		this.balance = new DollarAmount(balanceInCents);
+		this.transactions = new ArrayList<Transaction>();
 	}
 
-	public Long getAccountId() {
-		return accountId;
+	public Patron getPatron() {
+		return patron;
 	}
-
-	public void setAccountId(Long accountId) {
-		this.accountId = accountId;
-	}
-
-	public Long getUserId() {
-		return userId;
-	}
-
-	public void setUserId(Long userId) {
-		this.userId = userId;
+	public void setPatron(Patron patron) {
+		this.patron = patron;
 	}
 
 	public Date getDateOpened() {
 		return dateOpened;
 	}
-
-	public void setDateOpened(Date dateOpened) {
-		this.dateOpened = dateOpened;
-	}
+	// no setter provided because this value is not expected to change
 
 	public String getNickname() {
 		return nickname;
 	}
-
 	public void setNickname(String nickname) {
 		this.nickname = nickname;
 	}
 
-	public long getBalanceInCents() {
-		return balanceInCents;
+	public DollarAmount getBalance() {
+		return balance;
 	}
+	// no setter provided because DollarAmount instance should be updated via its methods for updating the amount instead of manually creating new DollarAmount instance for new balance
 
-	public void setBalanceInCents(long balanceInCents) {
-		this.balanceInCents = balanceInCents;
+	public List<Transaction> getTransactions() {
+		return transactions;
 	}
-	
-	
+	public void addTransaction(Transaction transaction) {
+		transactions.add(transaction);
+	}
+	// no setter or remove method should be needed
 	
 }

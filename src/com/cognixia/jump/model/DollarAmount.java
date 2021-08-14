@@ -6,14 +6,15 @@ import java.util.Locale;
 
 public class DollarAmount implements Serializable {
 	
-	private static final long serialVersionUID = -3345047498511845421L;
-	private int amount;
+	private static final long serialVersionUID = 1;
+	
+	private long amountInCents;
 	
 	public DollarAmount() {
-		this(0); // source: https://stackoverflow.com/questions/285177/how-do-i-call-one-constructor-from-another-in-java#answer-15348070
+		this(0);
 	}
 	
-	public DollarAmount(int amount) {
+	public DollarAmount(long amount) {
 		try {
 			setAmount(amount);
 //		} catch(InvalidDollarAmountException e) {
@@ -27,20 +28,26 @@ public class DollarAmount implements Serializable {
 		return new DollarAmount(dollarAmt1.getAmount() + dollarAmt2.getAmount());
 	}
 	
-	public int getAmount() {
-		return amount;
+	public void add(DollarAmount amountToAdd) throws Exception {
+		add(amountToAdd.amountInCents);
+	}
+	public void add(long amountInCents) throws Exception {
+		setAmount(this.amountInCents + amountInCents);
 	}
 	
-	public void setAmount(int amount) throws Exception {
+	public long getAmount() {
+		return amountInCents;
+	}
+	public void setAmount(long amount) throws Exception {
 		if (amount < 0) throw new Exception();
-		this.amount = amount;
+		this.amountInCents = amount;
 	}
 	
 	@Override
 	public String toString() {
 		// source: https://www.baeldung.com/java-number-formatting
 		NumberFormat nf = NumberFormat.getCurrencyInstance(new Locale("en", "US"));
-		return nf.format(amount);
+		return nf.format(amountInCents);
 	}
 	
 }
