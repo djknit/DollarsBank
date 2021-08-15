@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.cognixia.jump.repository.BankDataRepository;
+
 public class Patron extends RecordWithId implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -16,7 +18,7 @@ public class Patron extends RecordWithId implements Serializable {
 	private List<Account> accounts;
 	
 	public Patron(String username, String password, String name, String address, long phoneNumber) {
-		super();
+		super(BankDataRepository.getNextPatronId());
 		this.username = username;
 		this.password = password;
 		this.name = name;

@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.sql.Timestamp;
 import java.time.ZonedDateTime;
 
+import com.cognixia.jump.repository.BankDataRepository;
+
 public class Transaction extends RecordWithId implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
@@ -22,7 +24,7 @@ public class Transaction extends RecordWithId implements Serializable {
 	
 	private Transaction(Account account, DollarAmount amount, Account receivingAccount,
 			Account sendingAccount, TransactionTypes type) {
-		super();
+		super(BankDataRepository.getNextTransactionId());
 		this.account = account;
 		this.amount = new DollarAmount();
 		this.timestamp = createNowTimestamp();

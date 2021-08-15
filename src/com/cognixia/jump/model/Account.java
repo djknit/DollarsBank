@@ -5,6 +5,8 @@ import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.cognixia.jump.repository.BankDataRepository;
+
 public class Account extends RecordWithId implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -16,7 +18,7 @@ public class Account extends RecordWithId implements Serializable {
 	private List<Transaction> transactions;
 	
 	public Account(Patron patron, Date dateOpened, String nickname, long balanceInCents) {
-		super();
+		super(BankDataRepository.getNextAccountId());
 		this.patron = patron;
 		this.dateOpened = dateOpened;
 		this.nickname = nickname;
