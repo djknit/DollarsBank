@@ -1,5 +1,5 @@
 package com.cognixia.jump.controller;
 
-public class Account {
+public class AccountController {
 
 }

@@ -1,5 +1,7 @@
 package com.cognixia.jump;
 
+import com.cognixia.jump.utility.Display;
+
 public class DollarsBankDriver {
 
     public static final String RESET = "\033[0m";  
@@ -30,6 +32,10 @@ public class DollarsBankDriver {
 		System.out.println(ESC + "[32m" + "green test" + ESC + "[0m");
 
 		System.out.println("\u001B[36m" + "cyan test" + "\u001B[0m");
+
+		System.out.println("\naayee\n");
+		Display.printDivider();
+		System.out.println("\n\naayee");
 	}
 	
 }

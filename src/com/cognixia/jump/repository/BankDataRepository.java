@@ -13,7 +13,7 @@ import com.cognixia.jump.utility.FileIO;
 public class BankDataRepository implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	private static BankDataRepository instance;
+	private static final BankDataRepository instance;
 	
 	private List<Patron> patrons;
 	private List<Transaction> transactions;

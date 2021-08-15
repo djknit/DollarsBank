@@ -1,5 +1,5 @@
 package com.cognixia.jump.controller;
 
-public class Patron {
+public class TransactionController {
 
 }
