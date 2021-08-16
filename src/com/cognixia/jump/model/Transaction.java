@@ -1,90 +1,77 @@
 package com.cognixia.jump.model;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 import java.time.ZonedDateTime;
 
-public class Transaction {
+import com.cognixia.jump.repository.BankDataRepository;
+
+public class Transaction extends RecordWithId implements Serializable {
 	
-	public enum TransactionType {
+	private static final long serialVersionUID = 1L;
+	
+	public enum TransactionTypes {
 		DEPOSIT, WITHDRAWAL, SEND_TRANSFER, RECEIVE_TRANSFER
 	}
 
-	private Long transactionId;
-	private Long accountId;
-	private long amountInCents;
-	private Timestamp timestamp;
-	private Long reveivingAccountId;
-	private Long sendingAccountId;
-	private TransactionType type;
+	// Once created, transaction should not change. (Can't go back in time and undo action as money has moved, so new transaction would be needed to fix any mistaken transactions.)
+	private final Account account;
+	private final DollarAmount amount;
+	private final Timestamp timestamp;
+	private final Account receivingAccount;
+	private final Account sendingAccount;
+	private final TransactionTypes type;
 	
-	public Transaction() {
-		this(-1L, -1L, -1l, null, -1L, -1L, null);
-	}
-	public Transaction(Long transactionId, Long accountId, long amountInCents, Timestamp timestamp,
-			Long reveivingAccountId, Long sendingAccountId, TransactionType type) {
-		super();
-		this.transactionId = transactionId;
-		this.accountId = accountId;
-		this.amountInCents = amountInCents;
-/************************************************************
- ************************************************************
- * NOTE:													*
- * 															*
- * source for timestamp stuff:								*
- * > > >  https://mkyong.com/java/how-to-get-current-timestamps-in-java/
- * ***********************************************************
- * > > > > > */
-		this.timestamp = timestamp;
-		this.reveivingAccountId = reveivingAccountId;
-		this.sendingAccountId = sendingAccountId;
+	private Transaction(Account account, DollarAmount amount, Account receivingAccount,
+			Account sendingAccount, TransactionTypes type) {
+		super(BankDataRepository.getNextTransactionId());
+		this.account = account;
+		this.amount = new DollarAmount();
+		this.timestamp = createNowTimestamp();
+		this.receivingAccount = receivingAccount;
+		this.sendingAccount = sendingAccount;
 		this.type = type;
 	}
 	
-	public Long getTransactionId() {
-		return transactionId;
+	// Factories for each transaction type. Similar to overloaded constructor, but seemed to make more sense for this situation.
+	public static Transaction createDeposit(Account account, DollarAmount amount) {
+		return new Transaction(account, amount, null, null, TransactionTypes.DEPOSIT);
 	}
-	public void setTransactionId(Long transactionId) {
-		this.transactionId = transactionId;
+	public static Transaction createWithdrawal(Account account, DollarAmount amount) {
+		return new Transaction(account, amount, null, null, TransactionTypes.WITHDRAWAL);
 	}
-	public Long getAccountId() {
-		return accountId;
+	public static Transaction createSendingTransfer(
+			Account account, DollarAmount amount, Account receivingAccount) {
+		return new Transaction(account, amount, receivingAccount, null, TransactionTypes.SEND_TRANSFER);
 	}
-	public void setAccountId(Long accountId) {
-		this.accountId = accountId;
+	public static Transaction createReceivingTransfer(
+			Account account, DollarAmount amount, Account sendingAccount) {
+		return new Transaction(account, amount, null, sendingAccount, TransactionTypes.RECEIVE_TRANSFER);
 	}
-	public long getAmountInCents() {
-		return amountInCents;
+	
+	public Account getAccount() {
+		return account;
 	}
-	public void setAmountInCents(long amountInCents) {
-		this.amountInCents = amountInCents;
+	public DollarAmount getAmount() {
+		return amount;
 	}
 	public Timestamp getTimestamp() {
 		return timestamp;
 	}
-	public void setTimestamp(Timestamp timestamp) {
-		this.timestamp = timestamp;
+	public Account getReceivingAccount() {
+		return receivingAccount;
 	}
-	public void setTimestampToNow() {
-		long currentEpochMilli = ZonedDateTime.now().toInstant().toEpochMilli();
-		setTimestamp(new Timestamp(currentEpochMilli));
+	public Account getSendingAccount() {
+		return sendingAccount;
 	}
-	public Long getReveivingAccountId() {
-		return reveivingAccountId;
-	}
-	public void setReveivingAccountId(Long reveivingAccountId) {
-		this.reveivingAccountId = reveivingAccountId;
-	}
-	public Long getSendingAccountId() {
-		return sendingAccountId;
-	}
-	public void setSendingAccountId(Long sendingAccountId) {
-		this.sendingAccountId = sendingAccountId;
-	}
-	public TransactionType getType() {
+	public TransactionTypes getType() {
 		return type;
 	}
-	public void setType(TransactionType type) {
-		this.type = type;
+
+	public static Timestamp createNowTimestamp() {
+		// source: https://mkyong.com/java/how-to-get-current-timestamps-in-java/
+		long currentEpochMilli = ZonedDateTime.now().toInstant().toEpochMilli();
+		return new Timestamp(currentEpochMilli);
 	}
 	
 }
