@@ -1,6 +1,7 @@
 package com.cognixia.jump;
 
 import com.cognixia.jump.utility.Display;
+import com.cognixia.jump.utility.FileIO;
 
 public class DollarsBankDriver {
 
@@ -36,6 +37,8 @@ public class DollarsBankDriver {
 		System.out.println("\naayee\n");
 		Display.printDivider();
 		System.out.println("\n\naayee");
+		
+		FileIO dummy = new FileIO();
 	}
 	
 }

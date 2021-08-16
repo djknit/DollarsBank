@@ -92,7 +92,7 @@ public class BankDataRepository implements Serializable {
 		return instance.nextAccountId++;
 	}
 	
-	private static void save() {
+	public static void save() {
 		FileIO.writeToFile(instance);
 	}
 	

@@ -9,14 +9,17 @@ import java.io.ObjectOutputStream;
 public class FileIO {
 
 	private static File file;
+	private static File directory = new File("/resources/");
 	
 	static {
+		if (!directory.exists()) {
+			directory.mkdir();
+		}
 		try {
-			file = new File("resources/bankData.javaObjectData");
+			file = new File("resources" + File.separator + "dlrsBnkProgramData.jObjectStream");
 			if (!file.exists()) file.createNewFile();
 		} catch(Exception e) {
-			System.out.println("\nERROR: Stored data could not be loaded. YOUR DATA IS NOT BEING SAVED!\n");
-//			new AnythingInput(() -> {});
+			System.out.println("\nERROR: Stored data could not be loaded.\n*YOUR DATA IS NOT BEING SAVED!*\n");
 		}
 	}
 	
@@ -24,7 +27,7 @@ public class FileIO {
 		try (ObjectOutputStream writer = new ObjectOutputStream(new FileOutputStream(file))) {
 			writer.writeObject(objDataToWrite);
 		} catch (Exception e) {
-			System.out.println("\nERROR: Data file write failed. YOUR DATA COULD NOT BE SAVED!\n");
+			System.out.println("\nERROR: Data file write failed.\n* YOUR DATA COULD NOT BE SAVED! *\n");
 		}
 	}
 	

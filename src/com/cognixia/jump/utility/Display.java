@@ -7,7 +7,7 @@ public class Display {
 	private static final int H_LINES_WIDTH = 42;
 	private static final String H_RULE = createRepeatCharString('_');
 	private static final String DIVIDER =
-			createRepeatCharString('_') + "\n" + createRepeatCharString('$');
+			createRepeatCharString('_') + "\n" + createRepeatCharString('@');
 	
 	public static void printDivider() {
 		System.out.println(DIVIDER);

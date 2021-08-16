@@ -1,6 +1,6 @@
 package com.cognixia.jump.menus;
 
-import com.cognixia.jump.display.Divider;
+import com.cognixia.jump.utility.Display;
 
 class FullPrompt {
 	
@@ -15,9 +15,7 @@ class FullPrompt {
 	}
 	
 	public final void print() {
-		Divider.printLow();
-		Divider.print();
-		Divider.printLow();
+		Display.printDivider();
 		System.out.println(name + ":\n");
 		for (int i = 0; i < options.length; i++) {
 			System.out.println("  " + i + ".) " + options[i].getDescription());
