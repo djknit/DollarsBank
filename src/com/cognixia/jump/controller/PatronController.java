@@ -21,4 +21,14 @@ public class PatronController {
 		}
 	}
 	
+	public Patron getPatronByUsername(String username) {
+		for (Patron patron : BankDataRepository.getPatrons()) {
+			// case-sensitive, but forgiving by ignoring whitespace at beginning or end
+			if (patron.getUsername().trim().equals(username.trim())) {
+				return patron;
+			};
+		}
+		return null;
+	}
+	
 }

@@ -29,16 +29,18 @@ public class DollarsBankDriver {
     public static final char ESC = (char) 27;
 	
 	public static void main(String[] args) {
-		System.out.println("test");
-		System.out.println(ESC + "[32m" + "green test" + ESC + "[0m");
-
-		System.out.println("\u001B[36m" + "cyan test" + "\u001B[0m");
-
-		System.out.println("\naayee\n");
-		Display.printDivider();
-		System.out.println("\n\naayee");
+//		System.out.println("test");
+//		System.out.println(ESC + "[32m" + "green test" + ESC + "[0m");
+//
+//		System.out.println("\u001B[36m" + "cyan test" + "\u001B[0m");
+//
+//		System.out.println("\naayee\n");
+//		Display.printDivider();
+//		System.out.println("\n\naayee");
+//		
+//		FileIO dummy = new FileIO();
 		
-		FileIO dummy = new FileIO();
+		Display.printLogo();
 	}
 	
 }

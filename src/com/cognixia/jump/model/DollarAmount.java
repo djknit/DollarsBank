@@ -14,9 +14,9 @@ public class DollarAmount implements Serializable {
 		this(0);
 	}
 	
-	public DollarAmount(long amount) {
+	public DollarAmount(long amountInCents) {
 		try {
-			setAmount(amount);
+			setAmount(amountInCents);
 //		} catch(InvalidDollarAmountException e) {
 //			System.out.println("Invalid dollar amount. Dollar amount was not set.");
 		} catch(Exception e) {
@@ -25,7 +25,7 @@ public class DollarAmount implements Serializable {
 	}
 	
 	public static DollarAmount getSum(DollarAmount dollarAmt1, DollarAmount dollarAmt2) {
-		return new DollarAmount(dollarAmt1.getAmount() + dollarAmt2.getAmount());
+		return new DollarAmount(dollarAmt1.getAmountInCents() + dollarAmt2.getAmountInCents());
 	}
 	
 	public void add(DollarAmount amountToAdd) throws Exception {
@@ -35,7 +35,7 @@ public class DollarAmount implements Serializable {
 		setAmount(this.amountInCents + amountInCents);
 	}
 	
-	public long getAmount() {
+	public long getAmountInCents() {
 		return amountInCents;
 	}
 	public void setAmount(long amount) throws Exception {
