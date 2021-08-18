@@ -34,6 +34,16 @@ public class InputScanner {
 		}
 	}
 	
+	public static long getLongInput(boolean shouldAdvanceInputOnFail) throws Exception {
+		try {
+			long longInput = SCANNER.nextLong();
+			return longInput;
+		} catch(Exception e) {
+			if (shouldAdvanceInputOnFail) SCANNER.next();
+			throw e;
+		}
+	}
+	
 	public static DollarAmount getDollarAmountInput() throws Exception {
 		try {
 			double rawDollarAmountInput = SCANNER.nextDouble();
@@ -45,7 +55,7 @@ public class InputScanner {
 		}
 	}
 	
-	public static String getInput() {
+	public static String getStringInput() {
 		return SCANNER.next();
 	}
 	

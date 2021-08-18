@@ -1,14 +1,21 @@
 package com.cognixia.jump.utility;
 
 import com.cognixia.jump.exception.UserInputException;
+import com.cognixia.jump.model.Account;
+import com.cognixia.jump.model.DollarAmount;
+import com.cognixia.jump.model.Patron;
+import com.cognixia.jump.controller.PatronController;
+import com.cognixia.jump.exception.DuplicateUsernameException;
 import com.cognixia.jump.exception.IllegalInputLengthException;
 import com.cognixia.jump.exception.MissingInputException;
 import com.cognixia.jump.exception.OutOfRangeNumberException;
+import com.cognixia.jump.exception.OverdraftException;
 
 public class Validation {
 	
 	private static final int ADDRESS_MIN_CHARS = 3;
 	private static final int PASSWORD_MIN_CHARS = 6;
+	private static PatronController patronController = new PatronController();
 
 	public static boolean validateDollarAmount(double amount)
 			throws OutOfRangeNumberException {
@@ -43,28 +50,41 @@ public class Validation {
 	public static boolean validateAddress(String address)
 			throws MissingInputException, IllegalInputLengthException {
 		return validateSimpleText(address, "address", ADDRESS_MIN_CHARS);
-//		if (address == null || address.length() == 0) {
-//			throw new MissingInputException(
-//					"Your address cannot be blank.");
-//		}
-//		if (address.length() < ADDRESS_MIN_CHARS) {
-//			throw new IllegalInputLengthException("Your address must be at least " +
-//					ADDRESS_MIN_CHARS + " characters long.");
-//		}
-//		return true;
 	}
 	
-	public static boolean validatePassword(String address)
+	public static boolean validatePassword(String password)
 			throws MissingInputException, IllegalInputLengthException {
-		if (address == null || address.length() == 0) {
-			throw new MissingInputException(
-					"Your address cannot be blank.");
-		}
-		if (address.length() < ADDRESS_MIN_CHARS) {
-			throw new IllegalInputLengthException("Your address must be at least " +
-					ADDRESS_MIN_CHARS + " characters long.");
+		return validateSimpleText(password, "password", 5);
+	}
+	
+	public static boolean validatePhoneNumber(long phone) throws OutOfRangeNumberException {
+		if (phone < 0) {
+			throw new OutOfRangeNumberException("Negative numbers are not allowed as a phone number.");
 		}
 		return true;
+	}
+	
+	public static boolean validateUsername(String username)
+			throws DuplicateUsernameException, MissingInputException, IllegalInputLengthException {
+		if (patronController.getPatronByUsername(username) != null) {
+			throw new DuplicateUsernameException(
+					"Sorry, the username \"" + username + "\" is already taken.");
+		}
+		return validateSimpleText(username, "username", 3);
+	}
+	
+	public static boolean validateWithdrawalAmount(Account account, long tranAmountInCents)
+			throws OutOfRangeNumberException, OverdraftException {
+		validateDollarAmount(tranAmountInCents);
+		DollarAmount tranDollarAmount = new DollarAmount(tranAmountInCents);
+		if (account.getBalance().getAmountInCents() < tranAmountInCents) {
+			throw new OverdraftException(
+					"There is not enough money in your account to complete the transaction." +
+					"\nYou are trying to move " + new DollarAmount(tranAmountInCents) +
+					" out of your account, but the account currently only has " +
+					account.getBalance() + " available.");
+		}
+		return false;
 	}
 	
 }

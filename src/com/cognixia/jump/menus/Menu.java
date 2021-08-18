@@ -2,7 +2,7 @@ package com.cognixia.jump.menus;
 
 import com.cognixia.jump.input.InputScanner;
 
-class Menu {
+abstract class Menu {
 	
 	private static final String DEFAULT_PROMPT =
 			"Enter the corresponding number to select an option:";
@@ -23,14 +23,14 @@ class Menu {
 		this.fullPrompt = new FullPrompt(this.options, name, DEFAULT_PROMPT, leaveNameCase);
 	}
 	
-	final void run() {
-		run(this);
+	void run() {
+		fullPrompt.print();
+		int selectionNumber = getInput(options.length);
+		options[selectionNumber].select();
 	}
 	
 	static void run(Menu menu) {
-		menu.fullPrompt.print();
-		int selectionNumber = getInput(menu.options.length);
-		menu.options[selectionNumber].select();
+		menu.run();
 	}
 	
 	private static int getInput(int numOptions) {
