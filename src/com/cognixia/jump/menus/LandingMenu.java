@@ -1,23 +1,16 @@
 package com.cognixia.jump.menus;
 
-class LandingMenu extends Menu {
+import com.cognixia.jump.forms.NewUserForm;
+
+public class LandingMenu extends Menu {
 	
-	MenuOption[] options = {
-		new MenuOption("Login", null),
-		new MenuOption("Register New User", null)
+	private static MenuOption[] options = {
+		new MenuOption("Login", new NewUserForm()::run),
+		new MenuOption("Register New User", new NewUserForm()::run)
 	};
 			
-	LandingMenu(MenuOption[] options, String name) {
+	public LandingMenu() {
 		super(options, "What would you like to do?", true);
 	}
 
-//	static MenuOption[] options = {
-//		new MenuOption("Employees", () -> {
-////			Menus.employees();
-//		}),
-//		new MenuOption("Departments", () -> {
-////			Menus.departments();
-//		})
-//	};
-//	
 }

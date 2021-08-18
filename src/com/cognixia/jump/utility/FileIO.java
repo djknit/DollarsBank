@@ -36,7 +36,7 @@ public class FileIO {
 		try (ObjectInputStream reader = new ObjectInputStream(new FileInputStream(file))) {
 			savedData = reader.readObject();
 		} catch (Exception e) {
-			System.out.println("\nERROR: Stored data failed to load. YOUR DATA MAY NOT BE SAVED!\n");
+//			System.out.println("\nERROR: Stored data failed to load. YOUR DATA MAY NOT BE SAVED!\n");
 		}
 		return savedData;
 	}

@@ -17,6 +17,10 @@ class MenuOption {
 	}
 	
 	void select() {
-		executor.execute();
+		try {
+			executor.execute();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 }

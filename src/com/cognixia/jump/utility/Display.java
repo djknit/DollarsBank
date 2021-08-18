@@ -6,8 +6,8 @@ public class Display {
 	
 	private static final int H_LINES_WIDTH = 42;
 	private static final String H_RULE = createRepeatCharString('_');
-	private static final String DIVIDER =
-			createRepeatCharString('_') + "\n" + createRepeatCharString('@');
+	private static final String MINOR_DIVIDER = createRepeatCharString('-');
+	private static final String DIVIDER = H_RULE + "\n" + MINOR_DIVIDER;
 	public static void printLogo() {
 		new AppLogo().print();
 	}
@@ -18,6 +18,10 @@ public class Display {
 	
 	public static void printHRule() {
 		System.out.println(H_RULE);
+	}
+	
+	public static void printMinorDivider() {
+		System.out.println(MINOR_DIVIDER);
 	}
 	
 	public static String createRepeatCharString(char character) {
@@ -62,7 +66,7 @@ public class Display {
 		private String[] LOGO_LINES =
 				new String[LOGO_BODY_LINES.length + WELCOME_TEXT_LINES.length + 6];
 															//                 /\
-		{											//   ___________  //\\
+		{													//   ___________  //\\
 			int nextIndex = 0;								//	/,=========\\__||
 			LOGO_LINES[nextIndex++] = LOGO_DOLLAR_SIGN_ROW; // 1st additional line not in logo or welcome lines arrays
 			for (String line : LOGO_BODY_LINES) {
