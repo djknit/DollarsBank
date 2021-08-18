@@ -55,7 +55,7 @@ public class InputScanner {
 		}
 	}
 	
-	public static String getInput() {
+	public static String getStringInput() {
 		return SCANNER.next();
 	}
 	

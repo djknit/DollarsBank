@@ -58,4 +58,13 @@ public class Account extends RecordWithId implements Serializable {
 	}
 	// no setter or remove method should be needed
 	
+	@Override
+	public String toString() {
+		String accountNumberString = "" + super.getId();
+		while (accountNumberString.length() < 4) {
+			accountNumberString = "0" + accountNumberString;
+		}
+		return "[{\u2039 Account #" + accountNumberString + " \u25c6 " + nickname + " \u203a";
+	}
+	
 }

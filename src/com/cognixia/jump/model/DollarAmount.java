@@ -45,9 +45,17 @@ public class DollarAmount implements Serializable {
 	
 	@Override
 	public String toString() {
+		String numericValueAsString = "" + amountInCents;
+		while (numericValueAsString.length() < 3) {
+			numericValueAsString = "0" + numericValueAsString;
+		}
+		numericValueAsString = // source: https://www.baeldung.com/java-add-character-to-string#using-a-stringbuilder
+				new StringBuilder(numericValueAsString)
+				.insert(numericValueAsString.length() - 2, '.')
+				.toString();
 		// source: https://www.baeldung.com/java-number-formatting
 		NumberFormat nf = NumberFormat.getCurrencyInstance(new Locale("en", "US"));
-		return nf.format(amountInCents);
+		return nf.format(Double.parseDouble(numericValueAsString));
 	}
 	
 }
