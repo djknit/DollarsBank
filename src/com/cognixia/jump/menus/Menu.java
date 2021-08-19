@@ -40,8 +40,8 @@ abstract class Menu {
 			if (numTries > 0) {
 				System.out.println(
 						"Unable to process input. Please enter a number between 0 and "
-								+ (numOptions - 1) + ":"
-						);
+						+ (numOptions - 1) + ":");
+				
 			}
 			System.out.print(" > ");
 			try {
