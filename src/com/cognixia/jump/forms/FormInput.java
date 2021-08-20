@@ -30,6 +30,7 @@ public class FormInput {
 	public void run(boolean shouldPrintPrompt) {
 		if (shouldPrintPrompt) printPrompt();
 		try {
+			System.out.print(" > ");
 			getInput.execute();
 			validateInput.execute();
 		} catch (UserInputException e) {
