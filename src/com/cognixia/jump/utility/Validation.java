@@ -34,19 +34,6 @@ public class Validation {
 		return true;
 	}
 	
-	private static boolean validateSimpleText(String text, String fieldName, int minLength)
-			throws MissingInputException, IllegalInputLengthException {
-		if (text == null || text.length() == 0) {
-			throw new MissingInputException(
-					"Your " + fieldName + " cannot be blank.");
-		}
-		if (text.length() < minLength) {
-			throw new IllegalInputLengthException("Your " + fieldName +
-					" must be at least " + minLength + " characters long.");
-		}
-		return true;
-	}
-	
 	public static boolean validateAddress(String address)
 			throws MissingInputException, IllegalInputLengthException {
 		return validateSimpleText(address, "address", ADDRESS_MIN_CHARS);
@@ -54,7 +41,7 @@ public class Validation {
 	
 	public static boolean validatePassword(String password)
 			throws MissingInputException, IllegalInputLengthException {
-		return validateSimpleText(password, "password", 5);
+		return validateSimpleText(password, "password", PASSWORD_MIN_CHARS);
 	}
 	
 	public static boolean validatePhoneNumber(long phone) throws OutOfRangeNumberException {
@@ -85,6 +72,19 @@ public class Validation {
 					account.getBalance() + " available.");
 		}
 		return false;
+	}
+	
+	private static boolean validateSimpleText(String text, String fieldName, int minLength)
+			throws MissingInputException, IllegalInputLengthException {
+		if (text == null || text.length() == 0) {
+			throw new MissingInputException(
+					"Your " + fieldName + " cannot be blank.");
+		}
+		if (text.length() < minLength) {
+			throw new IllegalInputLengthException("Your " + fieldName +
+					" must be at least " + minLength + " characters long.");
+		}
+		return true;
 	}
 	
 }

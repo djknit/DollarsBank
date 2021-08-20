@@ -23,23 +23,26 @@ abstract class Menu {
 		this.fullPrompt = new FullPrompt(this.options, name, DEFAULT_PROMPT, leaveNameCase);
 	}
 	
-	void run() {
+	public void run() {
 		fullPrompt.print();
 		int selectionNumber = getInput(options.length);
 		options[selectionNumber].select();
 	}
 	
-	static void run(Menu menu) {
+	public static void run(Menu menu) {
 		menu.run();
 	}
 	
 	private static int getInput(int numOptions) {
 		int selectedNumber = -1;
+		int numTries = 0;
 		while (selectedNumber < 0 || selectedNumber >= numOptions) {
-			System.out.println(
-				"Unable to process input. Please enter a number between 0 and "
-				+ (numOptions - 1) + ":"
-			);
+			if (numTries++ > 0) {
+				System.out.println(
+						"Unable to process input. Please enter a number between 0 and "
+						+ (numOptions - 1) + ":");
+				
+			}
 			System.out.print(" > ");
 			try {
 				selectedNumber = InputScanner.getIntInput();

@@ -2,6 +2,7 @@ package com.cognixia.jump.input;
 
 import java.util.Scanner;
 
+import com.cognixia.jump.exception.NotANumberException;
 import com.cognixia.jump.model.DollarAmount;
 
 public class InputScanner {
@@ -13,34 +14,30 @@ public class InputScanner {
 		SCANNER.useDelimiter(System.lineSeparator()); // source: https://www.reddit.com/r/javahelp/wiki/scanner
 	}
 	
-	public static String getLinePreface() {
-		return " >> ";
-	}
-	
 	public static int getIntInput() throws Exception {
 		return getIntInput(true);
 	}
-	
 	public static int getIntInput(boolean shouldAdvanceInputOnFail) throws Exception {
 		try {
 			int intInput = SCANNER.nextInt();
 			return intInput;
-//		} catch(InputMismatchException e) {
-//			if (shouldAdvanceInputOnFail) SCANNER.next();
-//			throw new InvalidIntException(e);
 		} catch(Exception e) {
-			if (shouldAdvanceInputOnFail) SCANNER.next();
-			throw e;
+			SCANNER.next();
+			throw new NotANumberException("Input must be a whole number.", e);
 		}
 	}
 	
+	
+	public static long getLongInput() throws Exception {
+		return getLongInput(true);
+	}
 	public static long getLongInput(boolean shouldAdvanceInputOnFail) throws Exception {
 		try {
 			long longInput = SCANNER.nextLong();
 			return longInput;
 		} catch(Exception e) {
-			if (shouldAdvanceInputOnFail) SCANNER.next();
-			throw e;
+			SCANNER.next();
+			throw new NotANumberException("Input must be a whole number.", e);
 		}
 	}
 	
@@ -51,7 +48,7 @@ public class InputScanner {
 			return new DollarAmount(amountInCents);
 		} catch(Exception e) {
 			SCANNER.next();
-			throw e;
+			throw new NotANumberException("Input must be an number.", e);
 		}
 	}
 	
