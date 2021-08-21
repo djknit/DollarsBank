@@ -14,12 +14,21 @@ public enum Colors {
 
 	private final String ansiCode;
 	
+	public static void printTest() {
+		System.out.println("PRINT TEST");
+		for (Colors color : Colors.values()) {
+			if (color == RESET) continue;
+			System.out.println(color.toString());
+			System.out.println(color.colorize(color.toString()));
+		}
+	}
+	
 	Colors(String ansiCode) {
 		this.ansiCode = ansiCode;
 	}
 	
 	public String colorize(String noncoloredText) {
-		return ansiCode + noncoloredText + RESET;
+		return ansiCode + noncoloredText + RESET.ansiCode;
 	}
 	
 	public void startConsoleColor() {
@@ -27,7 +36,11 @@ public enum Colors {
 	}
 	
 	public static void resetConsoleColor() {
-		System.out.print(RESET);
+		System.out.print(RESET.ansiCode);
+	}
+	
+	public String getAnsiCode() {
+		return ansiCode;
 	}
 	
 }
