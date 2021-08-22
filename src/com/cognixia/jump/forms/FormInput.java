@@ -1,7 +1,7 @@
 package com.cognixia.jump.forms;
 
 import com.cognixia.jump.exception.UserInputException;
-import com.cognixia.jump.functionalInterfaces.Executor;
+import com.cognixia.jump.functionalinterface.Executor;
 import com.cognixia.jump.utility.Colors;
 
 public class FormInput {

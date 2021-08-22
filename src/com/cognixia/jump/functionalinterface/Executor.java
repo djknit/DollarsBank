@@ -1,4 +1,4 @@
-package com.cognixia.jump.functionalInterfaces;
+package com.cognixia.jump.functionalinterface;
 
 @FunctionalInterface
 public interface Executor {

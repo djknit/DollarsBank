@@ -1,4 +1,4 @@
-package com.cognixia.jump.menus;
+package com.cognixia.jump.menu;
 
 import com.cognixia.jump.DollarsBankDriver;
 import com.cognixia.jump.model.Patron;

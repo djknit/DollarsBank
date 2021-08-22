@@ -1,6 +1,6 @@
 package com.cognixia.jump;
 
-import com.cognixia.jump.menus.LandingMenu;
+import com.cognixia.jump.menu.LandingMenu;
 import com.cognixia.jump.model.Patron;
 import com.cognixia.jump.utility.Display;
 

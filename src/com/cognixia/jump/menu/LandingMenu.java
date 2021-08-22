@@ -1,4 +1,4 @@
-package com.cognixia.jump.menus;
+package com.cognixia.jump.menu;
 
 import com.cognixia.jump.forms.NewUserForm;
 
