@@ -1,4 +1,4 @@
-package com.cognixia.jump.forms;
+package com.cognixia.jump.form;
 
 import com.cognixia.jump.exception.UserInputException;
 import com.cognixia.jump.functionalinterface.Executor;

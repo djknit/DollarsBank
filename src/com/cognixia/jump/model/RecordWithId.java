@@ -1,6 +1,10 @@
 package com.cognixia.jump.model;
 
-public abstract class RecordWithId {
+import java.io.Serializable;
+
+public abstract class RecordWithId implements Serializable {
+	
+	private static final long serialVersionUID = 1L;
 	
 	private Long id;
 	

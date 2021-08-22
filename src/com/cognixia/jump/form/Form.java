@@ -1,4 +1,4 @@
-package com.cognixia.jump.forms;
+package com.cognixia.jump.form;
 
 import com.cognixia.jump.utility.Display;
 
@@ -23,5 +23,6 @@ abstract public class Form {
 		for (FormInput formInput : inputs) {
 			formInput.run();
 		}
+		this.submit();
 	}
 }

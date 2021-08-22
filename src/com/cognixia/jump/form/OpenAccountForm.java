@@ -1,4 +1,4 @@
-package com.cognixia.jump.forms;
+package com.cognixia.jump.form;
 
 public class OpenAccountForm extends Form {
 	

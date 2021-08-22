@@ -1,6 +1,6 @@
 package com.cognixia.jump.menu;
 
-import com.cognixia.jump.forms.NewUserForm;
+import com.cognixia.jump.form.NewUserForm;
 
 public class LandingMenu extends Menu {
 	

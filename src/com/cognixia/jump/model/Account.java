@@ -64,7 +64,7 @@ public class Account extends RecordWithId implements Serializable {
 		while (accountNumberString.length() < 4) {
 			accountNumberString = "0" + accountNumberString;
 		}
-		return "[{\u2039 Account #" + accountNumberString + " \u25c6 " + nickname + " \u203a";
+		return "Account #" + accountNumberString + " -- \"" + nickname + "\"";
 	}
 	
 }

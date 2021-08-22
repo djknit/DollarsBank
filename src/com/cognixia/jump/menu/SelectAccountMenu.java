@@ -3,7 +3,7 @@ package com.cognixia.jump.menu;
 import java.util.List;
 
 import com.cognixia.jump.DollarsBankDriver;
-import com.cognixia.jump.forms.OpenAccountForm;
+import com.cognixia.jump.form.OpenAccountForm;
 import com.cognixia.jump.model.Account;
 import com.cognixia.jump.model.Patron;
 import com.cognixia.jump.utility.Colors;
@@ -24,7 +24,9 @@ public class SelectAccountMenu extends Menu {
 		}
 		for (int i = 0; i < numAccounts; i++) {
 			Account account = accounts.get(i);
-			options[i + 1] = new MenuOption(null, null);
+			options[i + 1] = new MenuOption(
+					account.toString(),
+					new AccountMenu(account)::run);
 		}
 		return options;
 	}
@@ -37,11 +39,6 @@ public class SelectAccountMenu extends Menu {
 					"\nYou don't have any accounts. You must open a bank account to perform any transactions.");
 		}
 		return name;
-	}
-	
-	@Override
-	public void run() {
-		
 	}
 	
 }

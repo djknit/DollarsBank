@@ -13,14 +13,14 @@ import com.cognixia.jump.utility.FileIO;
 public class BankDataRepository implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	private static final BankDataRepository instance;
+	private static BankDataRepository instance;
 	
-	private List<Patron> patrons;
-	private List<Transaction> transactions;
-	private List<Account> accounts;
-	private Long nextPatronId;
-	private Long nextTransactionId;
-	private Long nextAccountId;
+	private List<Patron> patrons = new ArrayList<>();
+	private List<Transaction> transactions = new ArrayList<>();
+	private List<Account> accounts = new ArrayList<>();
+	private Long nextPatronId = 1L;
+	private Long nextTransactionId = 1L;
+	private Long nextAccountId = 1L;
 	
 	static {
 		Object dataFromFile = FileIO.getObjectDataFromFile();
@@ -31,13 +31,6 @@ public class BankDataRepository implements Serializable {
 	
 	private BankDataRepository() {
 		super();
-		patrons = new ArrayList<Patron>();
-		transactions = new ArrayList<Transaction>();
-		accounts = new ArrayList<Account>();
-		nextPatronId = 1L;
-		nextTransactionId = 1L;
-		nextAccountId = 1L;
-		save();
 	}
 	
 	public static BankDataRepository getInstance() {
