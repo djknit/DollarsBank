@@ -7,7 +7,7 @@ public class Display {
 	private static final int H_LINES_WIDTH = 42;
 	private static final String H_RULE = createRepeatCharString('_');
 	private static final String MINOR_DIVIDER = createRepeatCharString('-');
-	private static final String DIVIDER = H_RULE + "\n" + MINOR_DIVIDER;
+	private static final String DIVIDER = Colors.GREEN.colorize(H_RULE + "\n" + MINOR_DIVIDER);
 	public static void printLogo() {
 		new AppLogo().print();
 	}
@@ -60,7 +60,7 @@ public class Display {
 			" \\_____/'~~~y~~'\\_____/'~~~y~~'\\_______/'~~~~y~~~~'\\_____/                  ",
 			Colors.MAGENTA.colorize(" / \\_/ \\___/|___/ \\_/ \\___/|___/ \\___/ \\____/|_____/ \\_/ \\" + "$$$$$$$$$$$$$$$$$$")
 		};
-		private final int LOGO_WIDTH = LOGO_BODY_LINES[1].length() + EDGE_WIDTH;
+		private final int LOGO_WIDTH = LOGO_BODY_LINES[1].length() + EDGE_WIDTH; // must pick a line with no ansi codes to measure
 		private final String[] WELCOME_TEXT_LINES = {
 				"\\    /               \\ /    |",
 				" \\/\\/ E L C O M E S   | O U o"
@@ -69,7 +69,7 @@ public class Display {
 		private final String GREEN_$_ROW = Colors.GREEN.colorize(LOGO_DOLLAR_SIGN_ROW);
 		private final String MAGENTA_$_ROW = Colors.MAGENTA.colorize(LOGO_DOLLAR_SIGN_ROW);
 		private String[] LOGO_LINES =
-				new String[LOGO_BODY_LINES.length + WELCOME_TEXT_LINES.length + 6];
+				new String[LOGO_BODY_LINES.length + WELCOME_TEXT_LINES.length + 4];
 															//                 /\
 		{													//   ___________  //\\
 			int nextIndex = 0;								//	/,=========\\__||
@@ -83,9 +83,7 @@ public class Display {
 						L_EDGE_$$ + Colors.YELLOW.colorize(getTextCenteredOnLine(line, LOGO_WIDTH - 4)) + R_EDGE_$$;
 			}
 			LOGO_LINES[nextIndex++] = GREEN_$_ROW; // 3
-			LOGO_LINES[nextIndex++] = ""; // 4
-			LOGO_LINES[nextIndex++] = MAGENTA_$_ROW; // 5
-			LOGO_LINES[nextIndex++] = MAGENTA_$_ROW; // 6
+			LOGO_LINES[nextIndex++] = MAGENTA_$_ROW; // 4
 		}
 		
 		void print() {

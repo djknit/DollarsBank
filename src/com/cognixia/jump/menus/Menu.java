@@ -1,6 +1,7 @@
 package com.cognixia.jump.menus;
 
 import com.cognixia.jump.input.InputScanner;
+import com.cognixia.jump.utility.Colors;
 
 abstract class Menu {
 	
@@ -38,15 +39,17 @@ abstract class Menu {
 		int numTries = 0;
 		while (selectedNumber < 0 || selectedNumber >= numOptions) {
 			if (numTries++ > 0) {
-				System.out.println(
+				System.out.println(Colors.RED.colorize(
 						"Unable to process input. Please enter a number between 0 and "
-						+ (numOptions - 1) + ":");
+						+ (numOptions - 1) + ":"));
 				
 			}
 			System.out.print(" > ");
 			try {
+				Colors.CYAN.startConsoleColor();
 				selectedNumber = InputScanner.getIntInput();
 			} catch(Exception e) {
+				Colors.resetConsoleColor();
 				continue;
 			}
 		}

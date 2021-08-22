@@ -23,6 +23,7 @@ public class NewUserForm extends Form {
 				}),
 		new FormInput(
 				"Enter your address",
+				"3 characters minimum",
 				() -> {
 					address = InputScanner.getStringInput();
 				},
@@ -48,9 +49,9 @@ public class NewUserForm extends Form {
 				}),
 		new FormInput(
 				"Create a password",
-				"3 characters minimum",
+				"6 characters minimum",
 				() -> {
-					password = InputScanner.getStringInput();
+					password = InputScanner.getHiddenStringInput();
 				},
 				() -> {
 					Validation.validatePassword(password);

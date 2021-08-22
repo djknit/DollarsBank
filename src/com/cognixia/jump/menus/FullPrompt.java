@@ -1,5 +1,6 @@
 package com.cognixia.jump.menus;
 
+import com.cognixia.jump.utility.Colors;
 import com.cognixia.jump.utility.Display;
 
 class FullPrompt {
@@ -17,10 +18,12 @@ class FullPrompt {
 	public final void print() {
 		Display.printDivider();
 		System.out.println(name + ":\n");
+		Colors.CYAN.startConsoleColor();
 		for (int i = 0; i < options.length; i++) {
 			System.out.println("  " + i + ".) " + options[i].getDescription());
 		}
-		System.out.println("\n" + prompt);
+		Colors.resetConsoleColor();
+		System.out.println("\n" + Colors.YELLOW.colorize(prompt));
 	}
 	
 }
