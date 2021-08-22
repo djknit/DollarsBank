@@ -1,7 +1,7 @@
 package com.cognixia.jump.menu;
 
-import com.cognixia.jump.input.InputScanner;
 import com.cognixia.jump.utility.Colors;
+import com.cognixia.jump.utility.InputScanner;
 
 abstract class Menu {
 	

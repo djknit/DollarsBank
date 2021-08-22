@@ -1,9 +1,7 @@
 package com.cognixia.jump.utility;
 
-import com.cognixia.jump.exception.UserInputException;
 import com.cognixia.jump.model.Account;
 import com.cognixia.jump.model.DollarAmount;
-import com.cognixia.jump.model.Patron;
 import com.cognixia.jump.controller.PatronController;
 import com.cognixia.jump.exception.DuplicateUsernameException;
 import com.cognixia.jump.exception.IllegalInputLengthException;
@@ -63,7 +61,6 @@ public class Validation {
 	public static boolean validateWithdrawalAmount(Account account, long tranAmountInCents)
 			throws OutOfRangeNumberException, OverdraftException {
 		validateDollarAmount(tranAmountInCents);
-		DollarAmount tranDollarAmount = new DollarAmount(tranAmountInCents);
 		if (account.getBalance().getAmountInCents() < tranAmountInCents) {
 			throw new OverdraftException(
 					"There is not enough money in your account to complete the transaction." +

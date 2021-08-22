@@ -1,6 +1,6 @@
 package com.cognixia.jump.menu;
 
-import com.cognixia.jump.functionalinterface.Executor;
+import com.cognixia.jump.utility.Executor;
 
 class MenuOption {
 	

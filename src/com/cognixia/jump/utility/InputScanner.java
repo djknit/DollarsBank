@@ -1,10 +1,9 @@
-package com.cognixia.jump.input;
+package com.cognixia.jump.utility;
 
 import java.util.Scanner;
 
 import com.cognixia.jump.exception.NotANumberException;
 import com.cognixia.jump.model.DollarAmount;
-import com.cognixia.jump.utility.Colors;
 
 public class InputScanner {
 	
