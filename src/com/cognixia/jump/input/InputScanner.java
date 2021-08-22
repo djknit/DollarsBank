@@ -30,7 +30,6 @@ public class InputScanner {
 		}
 	}
 	
-	
 	public static long getLongInput() throws Exception {
 		return getLongInput(true);
 	}

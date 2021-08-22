@@ -1,6 +1,8 @@
 package com.cognixia.jump.forms;
 
+import com.cognixia.jump.controller.PatronController;
 import com.cognixia.jump.input.InputScanner;
+import com.cognixia.jump.model.Patron;
 import com.cognixia.jump.utility.Validation;
 
 public class NewUserForm extends Form {
@@ -10,8 +12,6 @@ public class NewUserForm extends Form {
 	private static String username;
 	private static long phoneNumber;
 	private static String password;
-	
-	
 	private static FormInput[] inputs = {
 		new FormInput(
 				"Enter your name",
@@ -57,10 +57,19 @@ public class NewUserForm extends Form {
 					Validation.validatePassword(password);
 				})
 	};
-
+	
+	private PatronController patronController;
+	
 	public NewUserForm() {
 		super("Create New User", inputs);
+		patronController = new PatronController();
 	}
 
+	@Override
+	void submit() {
+		Patron newUser = new Patron(username, password, name, address, phoneNumber);
+		patronController.createPatron(newUser);
+		
+	}
 	
 }
