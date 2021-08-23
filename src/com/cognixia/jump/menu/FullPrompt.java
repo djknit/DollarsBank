@@ -1,7 +1,7 @@
 package com.cognixia.jump.menu;
 
 import com.cognixia.jump.utility.Colors;
-import com.cognixia.jump.utility.Display;
+import com.cognixia.jump.utility.display.Display;
 
 class FullPrompt {
 	

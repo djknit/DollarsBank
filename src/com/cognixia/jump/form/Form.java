@@ -1,6 +1,6 @@
 package com.cognixia.jump.form;
 
-import com.cognixia.jump.utility.Display;
+import com.cognixia.jump.utility.display.Display;
 
 abstract public class Form {
 

@@ -59,12 +59,13 @@ public class Account extends RecordWithId implements Serializable {
 	// no setter or remove method should be needed
 	
 	@Override
+	public String getDisplayId() {
+		return "Account " + super.getDisplayId();
+	}
+	
+	@Override
 	public String toString() {
-		String accountNumberString = "" + super.getId();
-		while (accountNumberString.length() < 4) {
-			accountNumberString = "0" + accountNumberString;
-		}
-		return "Account #" + accountNumberString + " -- \"" + nickname + "\"";
+		return getDisplayId() + " -- \"" + nickname + "\"";
 	}
 	
 }

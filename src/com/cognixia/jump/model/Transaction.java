@@ -74,4 +74,9 @@ public class Transaction extends RecordWithId implements Serializable {
 		return new Timestamp(currentEpochMilli);
 	}
 	
+	@Override
+	public String getDisplayId() {
+		return "Transaction " + super.getDisplayId();
+	}
+	
 }

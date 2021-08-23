@@ -75,4 +75,9 @@ public class Patron extends RecordWithId implements Serializable {
 		this.accounts.remove(account);
 	}
 	
+	@Override
+	public String getDisplayId() {
+		return "Patron " + super.getDisplayId();
+	}
+	
 }

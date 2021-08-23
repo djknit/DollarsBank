@@ -3,6 +3,7 @@ package com.cognixia.jump.menu;
 import com.cognixia.jump.DollarsBankDriver;
 import com.cognixia.jump.form.OpenAccountForm;
 import com.cognixia.jump.model.Patron;
+import com.cognixia.jump.utility.display.PatronDisplay;
 
 public class MainMenu extends Menu {
 	
@@ -16,11 +17,25 @@ public class MainMenu extends Menu {
 	private static MenuOption[] getOptions() {
 		Patron user = DollarsBankDriver.getCurrentUser();
 		MenuOption[] options = {
-			new MenuOption("Accounts", new SelectAccountMenu()::run),
-			new MenuOption("Open New Account", new OpenAccountForm()::run),
-			new MenuOption("Recent Transactions", null),
-			new MenuOption("Customer Info", null),
-			new MenuOption("Sign Out", null)
+			new MenuOption(
+					"Accounts",
+					new SelectAccountMenu()::run),
+			new MenuOption(
+					"Open New Account",
+					new OpenAccountForm()::run),
+			new MenuOption(
+					"Recent Transactions", () -> {
+						
+						new MainMenu().run();
+					}),
+			new MenuOption(
+					"Customer Info", () -> {
+						PatronDisplay.printPatronInfo();
+						new MainMenu().run();
+					}),
+			new MenuOption(
+					"Sign Out",
+					DollarsBankDriver::logout)
 		};
 		return options;
 	}
