@@ -25,7 +25,7 @@ class FullPrompt {
 		Display.printDivider();
 		System.out.println(name + ":\n");
 		if (subtitle != null) {
-			System.out.println("\n" + subtitle + "\n");
+			System.out.println(subtitle + "\n");
 		}
 		Colors.CYAN.startConsoleColor();
 		for (int i = 0; i < options.length; i++) {

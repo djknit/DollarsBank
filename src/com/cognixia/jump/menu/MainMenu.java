@@ -8,19 +8,17 @@ import com.cognixia.jump.utility.display.TransactionDisplay;
 
 public class MainMenu extends Menu {
 	
-	private Patron user;
+//	private Patron user;
 
-	public MainMenu() {
-		super(getOptions(), "Main Menu");
-		user = DollarsBankDriver.getCurrentUser();
+	public MainMenu(Patron user) {
+		super(getOptions(user), "Main Menu");
 	}
 	
-	private static MenuOption[] getOptions() {
-		Patron user = DollarsBankDriver.getCurrentUser();
+	private static MenuOption[] getOptions(Patron user) {
 		MenuOption[] options = {
 			new MenuOption(
 					"Accounts",
-					new SelectAccountMenu()::run),
+					() -> new SelectAccountMenu(user).run()),
 			new MenuOption(
 					"Open New Account",
 					new OpenAccountForm()::run),
@@ -28,12 +26,12 @@ public class MainMenu extends Menu {
 					"Recent Transactions", () -> {
 						TransactionDisplay.printRecentTransactions(
 								user.getTransactions(), "All Accounts");
-						new MainMenu().run();
+						new MainMenu(user).run();
 					}),
 			new MenuOption(
 					"Customer Info", () -> {
 						PatronDisplay.printPatronInfo();
-						new MainMenu().run();
+						new MainMenu(user).run();
 					}),
 			new MenuOption(
 					"Sign Out",

@@ -26,7 +26,7 @@ public class AccountMenu extends Menu {
 		MenuOption[] options = new MenuOption[hasBalance ? 5 : 3];
 		
 		options[nextIndex++] = new MenuOption( // 1
-				"Back to Main Menu", new MainMenu()::run);
+				"Back to Main Menu", new MainMenu(account.getPatron())::run);
 		options[nextIndex++] = new MenuOption(
 				"Deposit", new DepositForm(account)::run); // 2
 		if (hasBalance) {

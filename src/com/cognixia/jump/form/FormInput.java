@@ -33,7 +33,7 @@ public class FormInput {
 		try {
 			System.out.print(" > ");
 			getInput.execute();
-			validateInput.execute();
+			if (validateInput != null) validateInput.execute();
 		} catch (UserInputException e) {
 			System.out.println(Colors.RED.colorize(e.getMessage()));
 			run(false);
