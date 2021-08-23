@@ -1,6 +1,12 @@
 package com.cognixia.jump.model;
 
-public abstract class RecordWithId {
+import java.io.Serializable;
+
+import com.cognixia.jump.utility.display.Display;
+
+public abstract class RecordWithId implements Serializable {
+	
+	private static final long serialVersionUID = 1L;
 	
 	private Long id;
 	
@@ -15,6 +21,14 @@ public abstract class RecordWithId {
 	
 	public Long getId() {
 		return id;
+	}
+	
+	public String getDisplayId() {
+		String idString = "" + id;
+		if (idString.length() < 4) {
+			idString = Display.createRepeatCharString('0', 4 - idString.length()) + idString;
+		}
+		return "#" + idString;
 	}
 	
 }

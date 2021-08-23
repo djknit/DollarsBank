@@ -37,7 +37,6 @@ public class BankDataRepository implements Serializable {
 		nextPatronId = 1L;
 		nextTransactionId = 1L;
 		nextAccountId = 1L;
-		save();
 	}
 	
 	public static BankDataRepository getInstance() {

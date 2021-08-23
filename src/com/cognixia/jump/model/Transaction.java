@@ -64,6 +64,14 @@ public class Transaction extends RecordWithId implements Serializable {
 	public Account getSendingAccount() {
 		return sendingAccount;
 	}
+	public Account getOtherAccount() {
+		if (type == TransactionTypes.SEND_TRANSFER) {
+			return receivingAccount;
+		} if (type == TransactionTypes.RECEIVE_TRANSFER) {
+			return sendingAccount;
+		}
+		return null;
+	}
 	public TransactionTypes getType() {
 		return type;
 	}
@@ -72,6 +80,11 @@ public class Transaction extends RecordWithId implements Serializable {
 		// source: https://mkyong.com/java/how-to-get-current-timestamps-in-java/
 		long currentEpochMilli = ZonedDateTime.now().toInstant().toEpochMilli();
 		return new Timestamp(currentEpochMilli);
+	}
+	
+	@Override
+	public String getDisplayId() {
+		return "Transaction " + super.getDisplayId();
 	}
 	
 }

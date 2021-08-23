@@ -1,7 +1,8 @@
-package com.cognixia.jump.forms;
+package com.cognixia.jump.form;
 
 import com.cognixia.jump.exception.UserInputException;
-import com.cognixia.jump.functionalInterfaces.Executor;
+import com.cognixia.jump.utility.Colors;
+import com.cognixia.jump.utility.Executor;
 
 public class FormInput {
 
@@ -32,9 +33,9 @@ public class FormInput {
 		try {
 			System.out.print(" > ");
 			getInput.execute();
-			validateInput.execute();
+			if (validateInput != null) validateInput.execute();
 		} catch (UserInputException e) {
-			System.out.println(e.getMessage());
+			System.out.println(Colors.RED.colorize(e.getMessage()));
 			run(false);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -42,9 +43,10 @@ public class FormInput {
 	}
 	
 	private void printPrompt() {
-		String fullPrompt = prompt;
-		if (helpText != null) fullPrompt += " (" + helpText + ")";
-		System.out.println(fullPrompt);
+		String fullPrompt = Colors.WHITE.colorize(prompt);
+		if (helpText != null) fullPrompt +=
+				Colors.YELLOW.colorize(" (" + helpText + ")");
+		System.out.println("\n" + fullPrompt);
 	}
 	
 }

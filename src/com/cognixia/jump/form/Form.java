@@ -1,6 +1,6 @@
-package com.cognixia.jump.forms;
+package com.cognixia.jump.form;
 
-import com.cognixia.jump.utility.Display;
+import com.cognixia.jump.utility.display.Display;
 
 abstract public class Form {
 
@@ -8,12 +8,14 @@ abstract public class Form {
 	private FormInput[] inputs;
  	
 	Form(String name, FormInput[] inputs) {
-		this(name, inputs, false); 
+		this(name, inputs, false);
 	}
 	Form(String name, FormInput[] inputs, boolean leaveCase) {
 		this.name = leaveCase ? name : name.toUpperCase();
 		this.inputs = inputs;
 	}
+	
+	abstract void submit();
 	
 	public void run() {
 		Display.printDivider();
@@ -21,5 +23,6 @@ abstract public class Form {
 		for (FormInput formInput : inputs) {
 			formInput.run();
 		}
+		this.submit();
 	}
 }

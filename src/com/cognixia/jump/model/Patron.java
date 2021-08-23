@@ -16,6 +16,7 @@ public class Patron extends RecordWithId implements Serializable {
 	private String address;
 	private long phoneNumber;
 	private List<Account> accounts;
+	private List<Transaction> transactions;
 	
 	public Patron(String username, String password, String name, String address, long phoneNumber) {
 		super(BankDataRepository.getNextPatronId());
@@ -25,6 +26,7 @@ public class Patron extends RecordWithId implements Serializable {
 		this.address = address;
 		this.phoneNumber = phoneNumber;
 		this.accounts = new ArrayList<Account>();
+		this.transactions = new ArrayList<Transaction>();
 	}
 	
 	public String getUsername() {
@@ -73,6 +75,19 @@ public class Patron extends RecordWithId implements Serializable {
 	}
 	public void removeAccount(Account account) {
 		this.accounts.remove(account);
+	}
+	
+	public List<Transaction> getTransactions() {
+		return transactions;
+	}
+	public void addTransaction(Transaction transaction) {
+		this.transactions.add(transaction);
+	}
+	// transactions shouldn't be removed or updated once finalized
+	
+	@Override
+	public String getDisplayId() {
+		return "Patron " + super.getDisplayId();
 	}
 	
 }
