@@ -11,7 +11,7 @@ import com.cognixia.jump.utility.display.TransactionDisplay;
 
 public class AccountMenu extends Menu {
 	
-	AccountMenu(Account account) {
+	public AccountMenu(Account account) {
 		super(
 				getOptions(account),
 				account.toString().toUpperCase(),

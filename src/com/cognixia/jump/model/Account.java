@@ -17,10 +17,13 @@ public class Account extends RecordWithId implements Serializable {
 	private DollarAmount balance;
 	private List<Transaction> transactions;
 	
-	public Account(Patron patron, Date dateOpened, String nickname, long balanceInCents) {
+	public Account(Patron patron, String nickname) {
+		this(patron, nickname, 0l);
+	}
+	public Account(Patron patron, String nickname, long balanceInCents) {
 		super(BankDataRepository.getNextAccountId());
 		this.patron = patron;
-		this.dateOpened = dateOpened;
+		this.dateOpened = new Date(createNowTimestamp().getTime());
 		this.nickname = nickname;
 		this.balance = new DollarAmount(balanceInCents);
 		this.transactions = new ArrayList<Transaction>();
