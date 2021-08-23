@@ -38,7 +38,7 @@ public class AccountMenu extends Menu {
 		options[nextIndex++] = new MenuOption( // 3
 				"Recent Transactions", () -> {
 					TransactionDisplay.printRecentTransactions(
-							account.getTransactions(), account.toString());
+							account.getTransactions(), account.toString(), false);
 					new AccountMenu(account).run();
 				});
 		

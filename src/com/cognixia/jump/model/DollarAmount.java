@@ -34,6 +34,9 @@ public class DollarAmount implements Serializable {
 	public void add(long amountInCents) throws Exception {
 		setAmount(this.amountInCents + amountInCents);
 	}
+	public void subtract(DollarAmount amountToSubtract) throws Exception {
+		add(0l - amountToSubtract.getAmountInCents());
+	}
 	
 	public long getAmountInCents() {
 		return amountInCents;

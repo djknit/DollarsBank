@@ -15,9 +15,9 @@ public class Validation {
 	private static final int PASSWORD_MIN_CHARS = 6;
 	private static PatronController patronController = new PatronController();
 
-	public static boolean validateDollarAmount(double amount)
+	public static boolean validateDollarAmount(DollarAmount amount)
 			throws OutOfRangeNumberException {
-		if (amount < 0) {
+		if (amount.getAmountInCents() < 0) {
 			throw new OutOfRangeNumberException(
 					"Negative dollar amounts are not allowed.");
 		}
@@ -58,13 +58,13 @@ public class Validation {
 		return validateSimpleText(username, "username", 3);
 	}
 	
-	public static boolean validateWithdrawalAmount(Account account, long tranAmountInCents)
+	public static boolean validateWithdrawalAmount(Account account, DollarAmount amount)
 			throws OutOfRangeNumberException, OverdraftException {
-		validateDollarAmount(tranAmountInCents);
-		if (account.getBalance().getAmountInCents() < tranAmountInCents) {
+		validateDollarAmount(amount);
+		if (account.getBalance().getAmountInCents() < amount.getAmountInCents()) {
 			throw new OverdraftException(
 					"There is not enough money in your account to complete the transaction." +
-					"\nYou are trying to move " + new DollarAmount(tranAmountInCents) +
+					"\nYou are trying to move " + amount +
 					" out of your account, but the account currently only has " +
 					account.getBalance() + " available.");
 		}

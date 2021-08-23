@@ -26,7 +26,7 @@ public class Transaction extends RecordWithId implements Serializable {
 			Account sendingAccount, TransactionTypes type) {
 		super(BankDataRepository.getNextTransactionId());
 		this.account = account;
-		this.amount = new DollarAmount();
+		this.amount = amount;
 		this.timestamp = createNowTimestamp();
 		this.receivingAccount = receivingAccount;
 		this.sendingAccount = sendingAccount;
