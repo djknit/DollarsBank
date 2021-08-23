@@ -10,11 +10,9 @@ public class DollarsBankDriver {
 	private static Patron CURRENT_USER = null;
 	
 	public static Patron getCurrentUser() {
-		System.out.println("GET CURRENT USER " + CURRENT_USER);
 		return CURRENT_USER;
 	}
 	public static void setCurrentUser(Patron user) {
-		System.out.println("SET CURRENT USER " + user);
 		CURRENT_USER = user;
 	}
 	public static void logout() {

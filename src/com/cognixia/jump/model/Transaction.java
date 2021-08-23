@@ -26,7 +26,7 @@ public class Transaction extends RecordWithId implements Serializable {
 			Account sendingAccount, TransactionTypes type) {
 		super(BankDataRepository.getNextTransactionId());
 		this.account = account;
-		this.amount = new DollarAmount();
+		this.amount = amount;
 		this.timestamp = createNowTimestamp();
 		this.receivingAccount = receivingAccount;
 		this.sendingAccount = sendingAccount;
@@ -74,12 +74,6 @@ public class Transaction extends RecordWithId implements Serializable {
 	}
 	public TransactionTypes getType() {
 		return type;
-	}
-
-	public static Timestamp createNowTimestamp() {
-		// source: https://mkyong.com/java/how-to-get-current-timestamps-in-java/
-		long currentEpochMilli = ZonedDateTime.now().toInstant().toEpochMilli();
-		return new Timestamp(currentEpochMilli);
 	}
 	
 	@Override

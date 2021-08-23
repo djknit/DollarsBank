@@ -11,7 +11,7 @@ import com.cognixia.jump.utility.display.TransactionDisplay;
 
 public class AccountMenu extends Menu {
 	
-	AccountMenu(Account account) {
+	public AccountMenu(Account account) {
 		super(
 				getOptions(account),
 				account.toString().toUpperCase(),
@@ -38,7 +38,7 @@ public class AccountMenu extends Menu {
 		options[nextIndex++] = new MenuOption( // 3
 				"Recent Transactions", () -> {
 					TransactionDisplay.printRecentTransactions(
-							account.getTransactions(), account.toString());
+							account.getTransactions(), account.toString(), false);
 					new AccountMenu(account).run();
 				});
 		
