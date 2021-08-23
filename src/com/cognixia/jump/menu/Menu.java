@@ -14,14 +14,21 @@ abstract class Menu {
 	Menu(MenuOption[] options, String name) {
 		this(options, name, false);
 	}
-	
 	Menu(MenuOption[] options, String name, boolean leaveNameCase) {
+		this(options, name, leaveNameCase, null);
+	}
+	Menu(MenuOption[] options, String name, String subtitle) {
+		this(options, name, false, subtitle);
+	}
+	
+	Menu(MenuOption[] options, String name, boolean leaveNameCase, String subtitle) {
 		this.options = new MenuOption[options.length + 1];
 		this.options[0] = new MenuOption("Exit Program", () -> {});
 		for (int i = 0; i < options.length; i++) {
 			this.options[i + 1] = options[i];
 		}
-		this.fullPrompt = new FullPrompt(this.options, name, DEFAULT_PROMPT, leaveNameCase);
+		this.fullPrompt = new FullPrompt(
+				this.options, name, DEFAULT_PROMPT, leaveNameCase, subtitle);
 	}
 	
 	public void run() {

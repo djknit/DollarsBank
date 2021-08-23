@@ -20,14 +20,22 @@ public class TransactionDisplay {
 		printRecentTransactions(transactions, DEFAULT_COUNT);
 	}
 	public static void printRecentTransactions(List<Transaction> transactions, String listname) {
-		printRecentTransactions(transactions, DEFAULT_COUNT, listname);
+		printRecentTransactions(transactions, DEFAULT_COUNT, listname, true);
+	}
+	public static void printRecentTransactions(
+			List<Transaction> transactions, String listname, boolean shouldPrintAccount) {
+		printRecentTransactions(transactions, DEFAULT_COUNT, listname, shouldPrintAccount);
 	}
 	public static void printRecentTransactions(List<Transaction> transactions, int count) {
-		printRecentTransactions(transactions, count, null);
+		printRecentTransactions(transactions, count, true);
+	}
+	public static void printRecentTransactions(
+			List<Transaction> transactions, int count, boolean shouldPrntAccount) {
+		printRecentTransactions(transactions, count, null, shouldPrntAccount);
 	}
 	
 	public static void printRecentTransactions(
-			List<Transaction> transactions, int count, String listName) {
+			List<Transaction> transactions, int count, String listName, boolean shouldPrintAccount) {
 		
 		Display.printDivider();
 		
@@ -43,7 +51,9 @@ public class TransactionDisplay {
 		System.out.println(Colors.YELLOW.colorize(message));
 		
 		getRecentTransactions(transactions, countToDisplay)
-				.stream().forEach(TransactionDisplay::printTransaction);
+				.stream().forEach((transaction) -> {
+					TransactionDisplay.printTransaction(transaction, shouldPrintAccount);
+				});
 	}
 	
 	private static List<Transaction> getRecentTransactions(List<Transaction> transactions, int countToDisplay) {

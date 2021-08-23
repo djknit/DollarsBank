@@ -4,6 +4,7 @@ import com.cognixia.jump.DollarsBankDriver;
 import com.cognixia.jump.form.OpenAccountForm;
 import com.cognixia.jump.model.Patron;
 import com.cognixia.jump.utility.display.PatronDisplay;
+import com.cognixia.jump.utility.display.TransactionDisplay;
 
 public class MainMenu extends Menu {
 	
@@ -25,7 +26,8 @@ public class MainMenu extends Menu {
 					new OpenAccountForm()::run),
 			new MenuOption(
 					"Recent Transactions", () -> {
-						
+						TransactionDisplay.printRecentTransactions(
+								user.getTransactions(), "All Accounts");
 						new MainMenu().run();
 					}),
 			new MenuOption(
