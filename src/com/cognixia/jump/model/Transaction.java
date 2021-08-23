@@ -64,6 +64,14 @@ public class Transaction extends RecordWithId implements Serializable {
 	public Account getSendingAccount() {
 		return sendingAccount;
 	}
+	public Account getOtherAccount() {
+		if (type == TransactionTypes.SEND_TRANSFER) {
+			return receivingAccount;
+		} if (type == TransactionTypes.RECEIVE_TRANSFER) {
+			return sendingAccount;
+		}
+		return null;
+	}
 	public TransactionTypes getType() {
 		return type;
 	}

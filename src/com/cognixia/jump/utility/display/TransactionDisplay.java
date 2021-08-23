@@ -4,6 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.cognixia.jump.model.Account;
 import com.cognixia.jump.model.Transaction;
 import com.cognixia.jump.model.Transaction.TransactionTypes;
 import com.cognixia.jump.utility.Colors;
@@ -59,16 +60,57 @@ public class TransactionDisplay {
 	public static void printTransaction(Transaction transaction) {
 		printTransaction(transaction, true);
 	}
+	
 	public static void printTransaction(Transaction transaction, boolean shouldPrintAccount) {
-		System.out.println(Colors.WHITE.colorize(
+		
+		Colors white = Colors.WHITE;
+		
+		System.out.println(white.colorize(
 				new SimpleDateFormat("yyyy-MM-dd hh:mm a z").format(transaction.getTimestamp())));
+		
 		String indent = "  ";
+		String separator = Colors.YELLOW.colorize(" -- ");
 		Colors transTypeTheme = getColor(transaction);
-		System.out.println(
-				indent + transTypeTheme.colorize("Transaction " + transaction.getDisplayId()) +
-				Colors.WHITE.colorize(" -- " + transaction.getType().toString()));
+		
+		String basicInfo = indent +
+				transTypeTheme.colorize("Transaction " + transaction.getDisplayId()) +
+				separator + white.colorize("" + transaction.getType());
+		if (shouldPrintAccount) {
+			Account account = transaction.getAccount();
+			basicInfo +=
+					separator + white.colorize(account.getDisplayId()) +
+					" " + Colors.GREEN.colorize(account.getNickname());
+		}
+		System.out.println(basicInfo);
+		
 		System.out.println(transTypeTheme.colorize(
-				indent + ""));
+				indent + transaction.getAmount() + " " + getPastTenseAction(transaction)));
+	}
+	
+	private static String getPastTenseAction(Transaction transaction) {
+		switch (transaction.getType()) {
+			case DEPOSIT:
+				return "deposited";
+			case WITHDRAWAL:
+				return "withdrawn";
+			case SEND_TRANSFER:
+				return "transfered out of account to " + getOtherAccountText(transaction);
+			case RECEIVE_TRANSFER:
+				return "transfered into account from " + getOtherAccountText(transaction);
+			default:
+				return null;
+		}
+	}
+	private static String getOtherAccountText(Transaction transaction) {
+		Account otherAccount = transaction.getOtherAccount();
+		if (otherAccount == null) return null;
+		String otherAccountText = otherAccount.getDisplayId();
+		if (otherAccount.getPatron() == transaction.getAccount().getPatron()) {
+			otherAccountText += "";
+		} else {
+			otherAccountText += "";
+		}
+		return otherAccountText;
 	}
 	
 	private static boolean isPositive(Transaction transaction) {
