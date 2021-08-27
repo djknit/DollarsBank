@@ -2,7 +2,6 @@ package com.cognixia.jump.model;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
-import java.time.ZonedDateTime;
 
 import com.cognixia.jump.repository.BankDataRepository;
 

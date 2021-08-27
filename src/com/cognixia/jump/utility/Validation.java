@@ -68,7 +68,15 @@ public class Validation {
 					" out of your account, but the account currently only has " +
 					account.getBalance() + " available.");
 		}
-		return false;
+		return true;
+	}
+	
+	public static boolean validateRequiredOnly(String textInput, String fieldName)
+			throws MissingInputException {
+		if (textInput == null || textInput.length() == 0) {
+			throw new MissingInputException("You must enter a " + fieldName + ".");
+		}
+		return true;
 	}
 	
 	private static boolean validateSimpleText(String text, String fieldName, int minLength)

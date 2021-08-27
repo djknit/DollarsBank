@@ -1,6 +1,7 @@
 package com.cognixia.jump.utility;
 
 public enum Colors {
+	
 	RESET("\u001b[0m"),
 	BLACK("\u001b[30m"),
 	RED("\u001b[31m"),
@@ -34,12 +35,12 @@ public enum Colors {
 		return ansiCode;
 	}
 
-	public static void printTest() {
+	public static void _printTest() {
 		System.out.println("PRINT TEST");
 		for (Colors color : Colors.values()) {
 			if (color == RESET) continue;
-			System.out.println(color.toString());
 			System.out.println(color.colorize(color.toString()));
 		}
 	}
+
 }

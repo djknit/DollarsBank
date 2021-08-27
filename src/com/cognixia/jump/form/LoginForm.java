@@ -7,6 +7,7 @@ import com.cognixia.jump.menu.MainMenu;
 import com.cognixia.jump.model.Patron;
 import com.cognixia.jump.utility.Colors;
 import com.cognixia.jump.utility.InputScanner;
+import com.cognixia.jump.utility.Validation;
 
 public class LoginForm extends Form {
 	
@@ -14,13 +15,13 @@ public class LoginForm extends Form {
 	private static String password;
 	private static FormInput[] inputs = {
 		new FormInput(
-				"Enter your username", () -> {
-					username = InputScanner.getStringInput();
-				}),
+				"Enter your username",
+				() -> username = InputScanner.getStringInput(),
+				() -> Validation.validateRequiredOnly(username, "username")),
 		new FormInput(
-				"Enter your password", () -> {
-					password = InputScanner.getHiddenStringInput();
-				})
+				"Enter your password",
+				() -> password = InputScanner.getHiddenStringInput(),
+				() -> Validation.validateRequiredOnly(password, "password"))
 	};
 	
 	private PatronController patronController;
