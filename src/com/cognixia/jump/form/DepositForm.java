@@ -15,12 +15,8 @@ public class DepositForm extends Form {
 	private static final FormInput[] inputs = {
 		new FormInput(
 				"Enter the amount to deposit in USD.",
-				() -> {
-					amount = InputScanner.getDollarAmountInput();
-				},
-				() -> {
-					Validation.validateDollarAmount(amount);
-				})
+				() -> amount = InputScanner.getDollarAmountInput(),
+				() -> Validation.validateDollarAmount(amount))
 	};
 	
 	private TransactionController transController;

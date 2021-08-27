@@ -15,12 +15,8 @@ public class WithdrawalForm extends Form {
 	private static final FormInput[] inputs = {
 		new FormInput(
 				"Enter the amount in USD to withdraw.",
-				() -> {
-					amount = InputScanner.getDollarAmountInput();
-				},
-				() -> {
-					Validation.validateWithdrawalAmount(account, amount);
-				})
+				() -> amount = InputScanner.getDollarAmountInput(),
+				() -> Validation.validateWithdrawalAmount(account, amount))
 	};
 
 	private TransactionController transController;

@@ -14,9 +14,7 @@ public class OpenAccountForm extends Form {
 	private static FormInput[] inputs = {
 		new FormInput(
 				"Choose a nickname for your new account.",
-				() -> {
-					nickname = InputScanner.getStringInput();
-				})
+				() -> nickname = InputScanner.getStringInput())
 	};
 	
 	private AccountController accountController;

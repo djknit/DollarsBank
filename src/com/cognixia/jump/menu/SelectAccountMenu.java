@@ -2,7 +2,6 @@ package com.cognixia.jump.menu;
 
 import java.util.List;
 
-import com.cognixia.jump.DollarsBankDriver;
 import com.cognixia.jump.form.OpenAccountForm;
 import com.cognixia.jump.model.Account;
 import com.cognixia.jump.model.Patron;
