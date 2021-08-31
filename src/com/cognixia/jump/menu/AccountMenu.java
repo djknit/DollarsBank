@@ -3,7 +3,7 @@ package com.cognixia.jump.menu;
 import java.text.SimpleDateFormat;
 
 import com.cognixia.jump.form.DepositForm;
-import com.cognixia.jump.form.SendTransferForm;
+import com.cognixia.jump.form.SendTransferToSelfForm;
 import com.cognixia.jump.form.WithdrawalForm;
 import com.cognixia.jump.model.Account;
 import com.cognixia.jump.utility.Colors;
@@ -33,7 +33,7 @@ public class AccountMenu extends Menu {
 			options[nextIndex++] = new MenuOption( // (+1)
 					"Withdrawal", new WithdrawalForm(account)::run);
 			options[nextIndex++] = new MenuOption( // (+2)
-					"Send Transfer", new SendTransferForm(account)::run);
+					"Send Transfer", new SendTransferToSelfForm(account)::run);
 		}
 		options[nextIndex++] = new MenuOption( // 3
 				"Recent Transactions", () -> {

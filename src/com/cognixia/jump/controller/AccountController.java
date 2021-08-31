@@ -1,5 +1,7 @@
 package com.cognixia.jump.controller;
 
+import java.util.Optional;
+
 import com.cognixia.jump.model.Account;
 import com.cognixia.jump.repository.BankDataRepository;
 
@@ -18,6 +20,16 @@ public class AccountController {
 	public void removeAccount(Account account) {
 		account.getPatron().removeAccount(account);
 		BankDataRepository.removeAccount(account);
+	}
+	
+	public Account findById(long id) {
+//		Account account = null;
+		// source: https://stackoverflow.com/questions/17526608/how-to-find-an-object-in-an-arraylist-by-property#answer-48839294
+		Optional<Account> accountForId = 
+				BankDataRepository.getAccounts().stream()
+				.filter(account -> (long) account.getId() == id)
+				.findFirst();
+		return accountForId.orElse(null);
 	}
 	
 }

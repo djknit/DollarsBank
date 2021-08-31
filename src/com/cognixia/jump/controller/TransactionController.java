@@ -37,4 +37,18 @@ public class TransactionController {
 		BankDataRepository.addTransaction(withdrawal);
 	}
 	
+	public void sendTransfer(Account originAccount, DollarAmount amount, Account targetAccount) {
+		Transaction sendingTransfer = Transaction.createSendingTransfer(originAccount, amount, targetAccount);
+		Transaction receivingTransfer = Transaction.createReceivingTransfer(targetAccount, amount, originAccount);
+		try {
+			originAccount.getBalance().subtract(amount);
+			targetAccount.getBalance().add(amount);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return;
+		}
+		originAccount.addTransaction(sendingTransfer);
+		targetAccount.addTransaction(receivingTransfer);
+	}
+	
 }

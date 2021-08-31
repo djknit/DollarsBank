@@ -2,6 +2,11 @@ package com.cognixia.jump.utility;
 
 import com.cognixia.jump.model.Account;
 import com.cognixia.jump.model.DollarAmount;
+import com.cognixia.jump.repository.BankDataRepository;
+
+import java.util.Optional;
+
+import com.cognixia.jump.controller.AccountController;
 import com.cognixia.jump.controller.PatronController;
 import com.cognixia.jump.exception.DuplicateUsernameException;
 import com.cognixia.jump.exception.IllegalInputLengthException;
@@ -14,7 +19,8 @@ public class Validation {
 	private static final int ADDRESS_MIN_CHARS = 3;
 	private static final int PASSWORD_MIN_CHARS = 6;
 	private static PatronController patronController = new PatronController();
-
+	private static AccountController accountController = new AccountController();
+	
 	public static boolean validateDollarAmount(DollarAmount amount)
 			throws OutOfRangeNumberException {
 		if (amount.getAmountInCents() < 0) {
@@ -75,6 +81,13 @@ public class Validation {
 			throws MissingInputException {
 		if (textInput == null || textInput.length() == 0) {
 			throw new MissingInputException("You must enter a " + fieldName + ".");
+		}
+		return true;
+	}
+	
+	public static boolean validateAccountId(long idInput) throws OutOfRangeNumberException {
+		if (accountController.findById(idInput) != null) {
+			throw new OutOfRangeNumberException("No account was found for that id.");
 		}
 		return true;
 	}
