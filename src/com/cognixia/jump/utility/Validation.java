@@ -2,9 +2,6 @@ package com.cognixia.jump.utility;
 
 import com.cognixia.jump.model.Account;
 import com.cognixia.jump.model.DollarAmount;
-import com.cognixia.jump.repository.BankDataRepository;
-
-import java.util.Optional;
 
 import com.cognixia.jump.controller.AccountController;
 import com.cognixia.jump.controller.PatronController;
@@ -86,7 +83,7 @@ public class Validation {
 	}
 	
 	public static boolean validateAccountId(long idInput) throws OutOfRangeNumberException {
-		if (accountController.findById(idInput) != null) {
+		if (accountController.findById(idInput) == null) {
 			throw new OutOfRangeNumberException("No account was found for that id.");
 		}
 		return true;

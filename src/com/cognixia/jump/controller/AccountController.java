@@ -23,13 +23,12 @@ public class AccountController {
 	}
 	
 	public Account findById(long id) {
-//		Account account = null;
 		// source: https://stackoverflow.com/questions/17526608/how-to-find-an-object-in-an-arraylist-by-property#answer-48839294
-		Optional<Account> accountForId = 
-				BankDataRepository.getAccounts().stream()
+		return BankDataRepository.getAccounts()
+				.stream()
 				.filter(account -> (long) account.getId() == id)
-				.findFirst();
-		return accountForId.orElse(null);
+				.findFirst()
+				.orElse(null);
 	}
 	
 }
