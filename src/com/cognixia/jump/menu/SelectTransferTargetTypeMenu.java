@@ -13,12 +13,12 @@ public class SelectTransferTargetTypeMenu extends Menu {
 	private static MenuOption[] getOptions(Account account) {
 		MenuOption[] options = {
 			new MenuOption(
-					"Transfer to another account that I own.",
+					"Select one of my own accounts to receive the transfer.",
 					() -> {
 						new SendTransferToSelfForm(account).run();
 					}), 
 			new MenuOption(
-					"Send to somebody else.",
+					"Send to any account by account ID number.",
 					() -> {
 						new SendTransferToDifferentPatronForm(account).run();
 					})

@@ -19,7 +19,8 @@ public class TransactionDisplay {
 	public static void printRecentTransactions(List<Transaction> transactions) {
 		printRecentTransactions(transactions, DEFAULT_COUNT);
 	}
-	public static void printRecentTransactions(List<Transaction> transactions, String listname) {
+	public static void printRecentTransactions(
+			List<Transaction> transactions, String listname) {
 		printRecentTransactions(transactions, DEFAULT_COUNT, listname, true);
 	}
 	public static void printRecentTransactions(
@@ -83,7 +84,7 @@ public class TransactionDisplay {
 		Colors transTypeTheme = getColor(transaction);
 		
 		String basicInfo = indent +
-				transTypeTheme.colorize("Transaction " + transaction.getDisplayId()) +
+				transTypeTheme.colorize(transaction.getDisplayId()) +
 				separator + white.colorize("" + transaction.getType());
 		if (shouldPrintAccount) {
 			Account account = transaction.getAccount();

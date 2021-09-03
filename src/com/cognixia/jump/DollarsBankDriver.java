@@ -28,6 +28,11 @@ public class DollarsBankDriver {
 		Display.printLogo();
 		new LandingMenu().run();
 		
+		Display.printDivider();
+		System.out.println(Colors.GREEN.colorize("Thank you for choosing Dollars Bank!"));
+		System.out.println(
+				"\n" + Display.getTextRightAligned("...GOODBYE"));
+		
 	}
 	
 }

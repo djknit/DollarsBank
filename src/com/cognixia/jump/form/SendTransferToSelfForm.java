@@ -1,6 +1,5 @@
 package com.cognixia.jump.form;
 
-import com.cognixia.jump.controller.AccountController;
 import com.cognixia.jump.controller.TransactionController;
 import com.cognixia.jump.exception.OutOfRangeNumberException;
 import com.cognixia.jump.model.Account;
@@ -13,7 +12,6 @@ public class SendTransferToSelfForm extends Form {
 	
 	private static Account originAccount;
 	private static int transferType;
-	private static Account targetAccount;
 	
 	private static DollarAmount amount;
 //	

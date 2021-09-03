@@ -45,4 +45,15 @@ public class Display {
 		return result;
 	}
 	
+	public static String getTextRightAligned(String lineText) {
+		return getTextRightAligned(lineText, H_LINES_WIDTH);
+	}
+	public static String getTextRightAligned(String lineText, int lineCharLength) {
+		int xtraChars = lineCharLength - lineText.length();
+		return xtraChars > 0 ?
+				createRepeatCharString(' ', xtraChars) + lineText :
+				lineText;
+	}
+	
+	
 }
