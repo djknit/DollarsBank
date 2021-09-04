@@ -44,6 +44,10 @@ public class SendTransferToDifferentPatronForm extends Form {
 
 	@Override
 	void submit() {
+		System.out.println("SUBMIT SEND TRANSFER");
+		System.out.println("origin " + originAccount);
+		System.out.println("target id #: " + targetAccountId);
+		System.out.println("target " + targetAccount);
 		transController.sendTransfer(originAccount, amount, targetAccount);
 	}
 	

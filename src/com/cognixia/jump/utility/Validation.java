@@ -2,7 +2,7 @@ package com.cognixia.jump.utility;
 
 import com.cognixia.jump.model.Account;
 import com.cognixia.jump.model.DollarAmount;
-
+import com.cognixia.jump.model.Patron;
 import com.cognixia.jump.controller.AccountController;
 import com.cognixia.jump.controller.PatronController;
 import com.cognixia.jump.exception.DuplicateUsernameException;
@@ -85,6 +85,22 @@ public class Validation {
 	public static boolean validateAccountId(long idInput) throws OutOfRangeNumberException {
 		if (accountController.findById(idInput) == null) {
 			throw new OutOfRangeNumberException("No account was found for that id.");
+		}
+		return true;
+	}
+	
+	public static boolean validateAccountIdForPatron(long idInput, Patron patron)
+			throws OutOfRangeNumberException {
+		return validateAccountIdForPatron(idInput, patron, null);
+	}
+	public static boolean validateAccountIdForPatron(
+			long idInput, Patron patron, Account ineligibleAccount)
+			throws OutOfRangeNumberException {
+		Account account = patron.findAccountById(idInput);
+		if (account == null) {
+			throw new OutOfRangeNumberException("You don't have an account with that id.");
+		} if (account == ineligibleAccount) {
+			throw new OutOfRangeNumberException("Invalid account id. You can't select the current account.");
 		}
 		return true;
 	}

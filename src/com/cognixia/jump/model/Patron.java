@@ -76,6 +76,12 @@ public class Patron extends RecordWithId implements Serializable {
 	public void removeAccount(Account account) {
 		this.accounts.remove(account);
 	}
+	public Account findAccountById(long id) {
+		return accounts.stream()
+				.filter(account -> (long) account.getId() == id)
+				.findFirst()
+				.orElse(null);
+	}
 	
 	public List<Transaction> getTransactions() {
 		return transactions;

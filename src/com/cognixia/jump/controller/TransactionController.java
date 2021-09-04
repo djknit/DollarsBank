@@ -19,9 +19,7 @@ public class TransactionController {
 			e.printStackTrace();
 			return;
 		}
-		account.addTransaction(newDeposit);
-		account.getPatron().addTransaction(newDeposit);
-		BankDataRepository.addTransaction(newDeposit);
+		addTransaction(newDeposit, account);
 	}
 	
 	public void withdraw(Account account, DollarAmount amount) {
@@ -32,9 +30,7 @@ public class TransactionController {
 			e.printStackTrace();
 			return;
 		}
-		account.addTransaction(withdrawal);
-		account.getPatron().addTransaction(withdrawal);
-		BankDataRepository.addTransaction(withdrawal);
+		addTransaction(withdrawal, account);
 	}
 	
 	public void sendTransfer(Account originAccount, DollarAmount amount, Account targetAccount) {
@@ -47,8 +43,14 @@ public class TransactionController {
 			e.printStackTrace();
 			return;
 		}
-		originAccount.addTransaction(sendingTransfer);
-		targetAccount.addTransaction(receivingTransfer);
+		addTransaction(sendingTransfer, originAccount);
+		addTransaction(receivingTransfer, targetAccount);
+	}
+	
+	private void addTransaction(Transaction transaction, Account account) {
+		account.addTransaction(transaction);
+		account.getPatron().addTransaction(transaction);
+		BankDataRepository.addTransaction(transaction);
 	}
 	
 }

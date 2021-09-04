@@ -1,7 +1,5 @@
 package com.cognixia.jump.controller;
 
-import java.util.Optional;
-
 import com.cognixia.jump.model.Account;
 import com.cognixia.jump.repository.BankDataRepository;
 
