@@ -6,6 +6,7 @@ import com.cognixia.jump.form.DepositForm;
 import com.cognixia.jump.form.WithdrawalForm;
 import com.cognixia.jump.model.Account;
 import com.cognixia.jump.utility.Colors;
+import com.cognixia.jump.utility.InputScanner;
 import com.cognixia.jump.utility.display.TransactionDisplay;
 
 public class AccountMenu extends Menu {
@@ -38,6 +39,7 @@ public class AccountMenu extends Menu {
 				"Recent Transactions", () -> {
 					TransactionDisplay.printRecentTransactions(
 							account.getTransactions(), account.toString(), false);
+					InputScanner.getEnterToContinueInput();
 					new AccountMenu(account).run();
 				});
 		

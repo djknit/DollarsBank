@@ -4,6 +4,7 @@ import com.cognixia.jump.controller.AccountController;
 import com.cognixia.jump.controller.TransactionController;
 import com.cognixia.jump.model.Account;
 import com.cognixia.jump.model.DollarAmount;
+import com.cognixia.jump.utility.Colors;
 import com.cognixia.jump.utility.InputScanner;
 import com.cognixia.jump.utility.Validation;
 
@@ -44,11 +45,10 @@ public class SendTransferToDifferentPatronForm extends Form {
 
 	@Override
 	void submit() {
-		System.out.println("SUBMIT SEND TRANSFER");
-		System.out.println("origin " + originAccount);
-		System.out.println("target id #: " + targetAccountId);
-		System.out.println("target " + targetAccount);
 		transController.sendTransfer(originAccount, amount, targetAccount);
+		System.out.println(Colors.GREEN.colorize(
+				"\nSuccess! " + amount + " was transfered to " + targetAccount + "."));
+		InputScanner.getEnterToContinueInput();
 	}
 	
 }

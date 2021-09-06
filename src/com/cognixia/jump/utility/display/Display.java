@@ -9,7 +9,9 @@ public class Display {
 	private static final int H_LINES_WIDTH = 42;
 	private static final String H_RULE = createRepeatCharString('_');
 	private static final String MINOR_DIVIDER = createRepeatCharString('-');
-	private static final String DIVIDER = Colors.GREEN.colorize(H_RULE + "\n" + MINOR_DIVIDER);
+	private static final String DIVIDER = Colors.WHITE.colorize(
+			H_RULE + "\n" + H_RULE + "\n" + MINOR_DIVIDER);
+
 	public static void printLogo() {
 		new AppLogo().print();
 	}

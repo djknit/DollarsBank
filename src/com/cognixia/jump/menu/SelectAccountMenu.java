@@ -16,12 +16,14 @@ public class SelectAccountMenu extends Menu {
 	private static MenuOption[] getOptions(Patron user) {
 		List<Account> accounts = user.getAccounts();
 		int numAccounts = accounts.size();
-		MenuOption[] options = new MenuOption[1 + (numAccounts > 0 ? numAccounts : 1)];
+		MenuOption[] options =
+				new MenuOption[numAccounts > 0 ? (numAccounts + 1) : 2];
 		options[0] = new MenuOption(
 				"Back to Main Menu",
 				() -> new MainMenu(user).run());
 		if (numAccounts == 0) {
-			options[1] = new MenuOption("Open new bank account", new OpenAccountForm()::run);
+			options[1] = new MenuOption(
+					"Open new bank account", new OpenAccountForm()::run);
 		}
 		for (int i = 0; i < numAccounts; i++) {
 			Account account = accounts.get(i);

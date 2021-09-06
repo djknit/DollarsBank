@@ -63,6 +63,9 @@ public class SendTransferToSelfForm extends Form {
 	@Override
 	void submit() {
 		transController.sendTransfer(originAccount, amount, targetAccount);
+		System.out.println(Colors.GREEN.colorize(
+				"\nSuccess! " + amount + " was transfered to " + targetAccount + "."));
+		InputScanner.getEnterToContinueInput();
 	}
 
 }

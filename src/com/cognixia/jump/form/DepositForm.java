@@ -35,6 +35,7 @@ public class DepositForm extends Form {
 		transController.deposit(account, amount);
 		System.out.println(Colors.GREEN.colorize(
 				"\nSuccess! " + amount + " was deposited into " + account + "."));
+		InputScanner.getEnterToContinueInput();
 		new AccountMenu(account).run();
 	}
 
