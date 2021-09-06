@@ -1,7 +1,6 @@
 package com.cognixia.jump.form;
 
 import com.cognixia.jump.controller.TransactionController;
-import com.cognixia.jump.exception.OutOfRangeNumberException;
 import com.cognixia.jump.model.Account;
 import com.cognixia.jump.model.DollarAmount;
 import com.cognixia.jump.utility.Colors;
@@ -11,26 +10,9 @@ import com.cognixia.jump.utility.Validation;
 public class SendTransferToSelfForm extends Form {
 	
 	private static Account originAccount;
-	private static int transferType;
-	
+	private static long targetAccountId;
+	private static Account targetAccount;
 	private static DollarAmount amount;
-//	
-	private static final FormInput[] inputs = {
-		new FormInput(
-				"Enter the Account Id of the account to send the transfer to.",
-				() -> {
-//					targetAccount = InputScanner.getLongInput();
-				}),
-		new FormInput(
-				"How much money do you want to transfer?",
-				() -> {
-					amount = InputScanner.getDollarAmountInput();
-				},
-				() -> {
-					Validation.validateWithdrawalAmount(originAccount, amount);
-				})
-	};
-		
 
 	private TransactionController transController;
 
@@ -47,19 +29,29 @@ public class SendTransferToSelfForm extends Form {
 	private static FormInput[] getInputs(Account account) {
 		FormInput[] inputs = {
 			new FormInput(
-					"Who owns the account you wish to send a transfer to?",
-					"Enter the number of your choice.",
+					"What account are you sending the transfer to?",
+					"Enter the account number of your choice.",
 					() -> {
-						System.out.println(Colors.CYAN.colorize(
-								"  1.) Myself. (Send to another account I own.)" +
-								"  2.) Someone else. (Send to an account belonging to somebody else.)"));
-						transferType = InputScanner.getIntInput();
+						String accountsText = "";
+						for (Account patronsAccount : account.getPatron().getAccounts()) {
+							if (patronsAccount == account) continue;
+							accountsText += " " + patronsAccount + "\n";
+						}
+						System.out.println(Colors.CYAN.colorize(accountsText));
+						targetAccountId = InputScanner.getLongInput();
+						targetAccount = account.getPatron().findAccountById(targetAccountId);
 					},
 					() -> {
-						if (transferType < 1 || transferType > 2) {
-							throw new OutOfRangeNumberException(
-									"Invalid choice. Please enter \"1\" or \"2\".");
-						}
+						Validation.validateAccountIdForPatron(
+								targetAccountId, account.getPatron(), account);
+					}),
+			new FormInput(
+					"How much money do you want to transfer?",
+					() -> {
+						amount = InputScanner.getDollarAmountInput();
+					},
+					() -> {
+						Validation.validateWithdrawalAmount(originAccount, amount);
 					})
 			
 		};
@@ -70,7 +62,10 @@ public class SendTransferToSelfForm extends Form {
 
 	@Override
 	void submit() {
-		
+		transController.sendTransfer(originAccount, amount, targetAccount);
+		System.out.println(Colors.GREEN.colorize(
+				"\nSuccess! " + amount + " was transfered to " + targetAccount + "."));
+		InputScanner.getEnterToContinueInput();
 	}
 
 }

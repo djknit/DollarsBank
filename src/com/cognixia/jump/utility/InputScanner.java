@@ -71,6 +71,14 @@ public class InputScanner {
 		return input;
 	}
 	
+	public static void getEnterToContinueInput() {
+		System.out.println(Colors.YELLOW.colorize(
+				"\nPress \"Enter\" to continue..."));
+		Colors.CYAN.startConsoleColor();
+		SCANNER.next();
+		Colors.resetConsoleColor();
+	}
+	
 	public static void close() {
 		SCANNER.close();
 	}

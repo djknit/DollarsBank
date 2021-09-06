@@ -35,6 +35,7 @@ public class WithdrawalForm extends Form {
 		transController.withdraw(account, amount);
 		System.out.println(Colors.GREEN.colorize(
 				"\nSuccess! " + amount + " was withdrawn from " + account + "."));
+		InputScanner.getEnterToContinueInput();
 		new AccountMenu(account).run();
 	}
 
