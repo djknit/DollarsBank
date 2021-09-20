@@ -5,6 +5,7 @@ import com.cognixia.jump.menu.LandingMenu;
 import com.cognixia.jump.menu.MainMenu;
 import com.cognixia.jump.menu.Menu;
 import com.cognixia.jump.model.Patron;
+import com.cognixia.jump.utility.GoBackRequest;
 import com.cognixia.jump.utility.display.Display;
 
 abstract public class Form {
@@ -41,7 +42,12 @@ abstract public class Form {
 		Display.printDivider();
 		System.out.println(name + ":");
 		for (FormInput formInput : inputs) {
-			formInput.run();
+			try {
+				formInput.run();
+			} catch (GoBackRequest t) {
+				previousMenu.run();
+				return;
+			}
 		}
 		this.submit();
 	}

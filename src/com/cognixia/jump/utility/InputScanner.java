@@ -26,26 +26,18 @@ public class InputScanner {
 				new MainMenu(currentUser);
 	}
 	
-	private static void checkForAndDoGoBackRequest(String input, Menu previousMenu) {
+	private static void checkForGoBackRequest(String input) throws GoBackRequest {
 		if (input.trim().equals("-b") || input.trim().equals("<")) {
-			try {
-				previousMenu.run();
-			} catch (Exception e) {
-				System.out.println(Colors.RED.colorize(
-						"ERROR: An unexpected exception has occured.\n"));
-			}
+			throw new GoBackRequest();
 		}
 	}
 	
-//	private static void handleNumericInputTypeMismatch(
-//			String badTypeMessage, Menu previousMenu) throws NotANumberException {
-//		handleNumericInputTypeMismatch(badTypeMessage, previousMenu, null);
-//	}
 	private static void handleNumericInputTypeMismatch(
-			String badTypeMessage, Menu previousMenu, Throwable e) throws NotANumberException {
+			String badTypeMessage, Menu previousMenu, Throwable e)
+					throws NotANumberException, GoBackRequest {
 		Colors.resetConsoleColor();
 		String input = SCANNER.next().trim();
-		checkForAndDoGoBackRequest(input, previousMenu);
+		checkForGoBackRequest(input);
 		throw new NotANumberException(badTypeMessage, e);
 	}
 	
@@ -54,15 +46,15 @@ public class InputScanner {
 	}
 	
 	public static int getIntInput()
-			throws NotANumberException, Exception {
+			throws NotANumberException, GoBackRequest {
 		return getIntInput(getDefaultPreviousMenu());
 	}
 	public static int getIntInput(Menu previousMenu)
-			throws NotANumberException, Exception {
+			throws NotANumberException, GoBackRequest {
 		return getIntInput(previousMenu, true);
 	}
 	public static int getIntInput(Menu previousMenu, boolean shouldAdvanceInputOnFail)
-			throws NotANumberException, Exception {
+			throws NotANumberException, GoBackRequest {
 		startInputColor();
 		try {
 			int intInput = SCANNER.nextInt();
@@ -74,13 +66,14 @@ public class InputScanner {
 		}
 	}
 	
-	public static long getLongInput() throws Exception {
+	public static long getLongInput() throws GoBackRequest, NotANumberException {
 		return getLongInput(getDefaultPreviousMenu());
 	}
-	public static long getLongInput(Menu previousMenu) throws Exception {
+	public static long getLongInput(Menu previousMenu) throws GoBackRequest, NotANumberException {
 		return getLongInput(previousMenu, true);
 	}
-	public static long getLongInput(Menu previousMenu, boolean shouldAdvanceInputOnFail) throws Exception {
+	public static long getLongInput(Menu previousMenu, boolean shouldAdvanceInputOnFail)
+			throws GoBackRequest, NotANumberException {
 		startInputColor();
 		try {
 			long longInput = SCANNER.nextLong();
@@ -92,10 +85,11 @@ public class InputScanner {
 		}
 	}
 	
-	public static DollarAmount getDollarAmountInput() throws Exception {
+	public static DollarAmount getDollarAmountInput() throws GoBackRequest, NotANumberException {
 		return getDollarAmountInput(getDefaultPreviousMenu());
 	}
-	public static DollarAmount getDollarAmountInput(Menu previousMenu) throws Exception {
+	public static DollarAmount getDollarAmountInput(Menu previousMenu)
+			throws GoBackRequest, NotANumberException {
 		startInputColor();
 		try {
 			double rawDollarAmountInput = SCANNER.nextDouble();
@@ -108,28 +102,28 @@ public class InputScanner {
 		}
 	}
 	
-	public static String getNonStyledStringInput() {
+	public static String getNonStyledStringInput() throws GoBackRequest {
 		return getNonStyledStringInput(getDefaultPreviousMenu());
 	}
-	private static String getNonStyledStringInput(Menu previousMenu) {
+	private static String getNonStyledStringInput(Menu previousMenu) throws GoBackRequest {
 		String input = SCANNER.next();
-		checkForAndDoGoBackRequest(input, previousMenu);
+		checkForGoBackRequest(input);
 		Colors.resetConsoleColor();
 		return input;
 	}
 	
-	public static String getStringInput() {
+	public static String getStringInput() throws GoBackRequest {
 		return getStringInput(getDefaultPreviousMenu());
 	}
-	public static String getStringInput(Menu previousMenu) {
+	public static String getStringInput(Menu previousMenu) throws GoBackRequest {
 		startInputColor();
 		return getNonStyledStringInput(previousMenu);
 	}
 
-	public static String getHiddenStringInput() {
+	public static String getHiddenStringInput() throws GoBackRequest {
 		return getHiddenStringInput(getDefaultPreviousMenu());
 	}
-	public static String getHiddenStringInput(Menu previousMenu) {
+	public static String getHiddenStringInput(Menu previousMenu) throws GoBackRequest {
 		Colors.BLUE_BLOCKS.startConsoleColor();
 		return getNonStyledStringInput(previousMenu);
 	}

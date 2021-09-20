@@ -15,11 +15,11 @@ public class LoginForm extends Form {
 	private static String password;
 	private static FormInput[] inputs = {
 		new FormInput(
-				"Enter your username",
+				"Enter your username.",
 				() -> username = InputScanner.getStringInput(),
 				() -> Validation.validateRequiredOnly(username, "username")),
 		new FormInput(
-				"Enter your password",
+				"Enter your password.",
 				() -> password = InputScanner.getHiddenStringInput(),
 				() -> Validation.validateRequiredOnly(password, "password"))
 	};

@@ -55,7 +55,7 @@ public abstract class Menu {
 			try {
 				Colors.CYAN.startConsoleColor();
 				selectedNumber = InputScanner.getIntInput();
-			} catch(Exception e) {
+			} catch(Throwable t) {
 				Colors.resetConsoleColor();
 				continue;
 			}
