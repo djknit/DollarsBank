@@ -26,7 +26,8 @@ public class DollarsBankDriver {
 	public static void main(String[] args) {
 
 		Display.printLogo();
-		new LandingMenu().run();
+		
+		new LandingMenu().run(); // Each Menu or Form calls the next based on user input until the user does not elect to continue.
 		
 		Display.printDivider();
 		System.out.println(Colors.GREEN.colorize("Thank you for choosing Dollars Bank!"));

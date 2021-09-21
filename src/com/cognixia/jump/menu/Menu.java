@@ -3,7 +3,7 @@ package com.cognixia.jump.menu;
 import com.cognixia.jump.utility.Colors;
 import com.cognixia.jump.utility.InputScanner;
 
-abstract class Menu {
+public abstract class Menu {
 	
 	private static final String DEFAULT_PROMPT =
 			"Enter the corresponding number to select an option:";
@@ -55,7 +55,7 @@ abstract class Menu {
 			try {
 				Colors.CYAN.startConsoleColor();
 				selectedNumber = InputScanner.getIntInput();
-			} catch(Exception e) {
+			} catch(Throwable t) {
 				Colors.resetConsoleColor();
 				continue;
 			}

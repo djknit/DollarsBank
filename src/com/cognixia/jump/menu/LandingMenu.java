@@ -8,10 +8,10 @@ public class LandingMenu extends Menu {
 	private static MenuOption[] options = {
 		new MenuOption(
 				"Login",
-				new LoginForm()::run),
+				() -> new LoginForm().run()),
 		new MenuOption(
 				"Register New User",
-				new NewUserForm()::run)
+				() -> new NewUserForm().run())
 	};
 			
 	public LandingMenu() {
