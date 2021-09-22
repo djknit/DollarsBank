@@ -6,7 +6,7 @@ import com.cognixia.jump.utility.Colors;
 
 public class Display {
 	
-	private static final int H_LINES_WIDTH = 42;
+	private static final int H_LINES_WIDTH = 64;
 	private static final String H_RULE = createRepeatCharString('_');
 	private static final String MINOR_DIVIDER = createRepeatCharString('-');
 	private static final String DIVIDER = Colors.WHITE.colorize(

@@ -16,10 +16,11 @@ public class FileIO {
 			directory.mkdir();
 		}
 		try {
-			file = new File("resources" + File.separator + "dlrsBnkProgramData.jObjectStream");
+			file = new File(
+					"resources" + File.separator + "dlrsBnkProgramData.jObjectStream");
 			if (!file.exists()) file.createNewFile();
 		} catch(Exception e) {
-			System.out.println("\nERROR: Stored data could not be loaded.\n*YOUR DATA IS NOT BEING SAVED!*\n");
+			announceProblem();
 		}
 	}
 	
@@ -27,7 +28,7 @@ public class FileIO {
 		try (ObjectOutputStream writer = new ObjectOutputStream(new FileOutputStream(file))) {
 			writer.writeObject(objDataToWrite);
 		} catch (Exception e) {
-			System.out.println("\nERROR: Data file write failed.\n* YOUR DATA COULD NOT BE SAVED! *\n");
+			announceProblem("Data write to file failed.");
 		}
 	}
 	
@@ -35,8 +36,18 @@ public class FileIO {
 		Object savedData = null;
 		try (ObjectInputStream reader = new ObjectInputStream(new FileInputStream(file))) {
 			savedData = reader.readObject();
-		} catch (Exception e) {}
+		} catch (Exception e) {
+			announceProblem();
+		}
 		return savedData;
+	}
+
+	private static void announceProblem() {
+		announceProblem("Stored data could not be loaded.");
+	}
+	private static void announceProblem(String message) {
+		System.out.println(Colors.RED.colorize(
+				"\nERROR: " + message + "\n* YOUR DATA IS NOT BEING SAVED PROPERLY! *\n"));
 	}
 	
 }

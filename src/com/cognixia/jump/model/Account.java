@@ -5,6 +5,7 @@ import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.cognixia.jump.DollarsBankDriver;
 import com.cognixia.jump.repository.BankDataRepository;
 
 public class Account extends RecordWithId implements Serializable {
@@ -68,7 +69,10 @@ public class Account extends RecordWithId implements Serializable {
 	
 	@Override
 	public String toString() {
-		return getDisplayId() + " -- \"" + nickname + "\"";
+		return getDisplayId() + (
+				patron == DollarsBankDriver.getCurrentUser() ?
+				", \"" + nickname + "\"" :
+				" -- (" + patron.getDisplayId() + ", \"" + patron.getName() + "\")");
 	}
 	
 }
