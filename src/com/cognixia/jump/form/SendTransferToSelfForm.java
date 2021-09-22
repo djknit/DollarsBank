@@ -57,8 +57,6 @@ public class SendTransferToSelfForm extends Form {
 		};
 		return inputs;
 	}
-	
-	
 
 	@Override
 	void submit() {
